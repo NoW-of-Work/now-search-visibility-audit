@@ -19,6 +19,9 @@ sources AI engines cite runs roughly 17–38%. A site can rank well and still be
 use, and much of AI visibility is won off-site through brand mentions. This audit measures all of it and tells
 you what to fix first.
 
+Most readers don't know the difference between the three, so every report opens with a one-page explainer:
+where each shows up, what it measures, and what it does for the business.
+
 ---
 
 ## What it does
@@ -76,21 +79,27 @@ git clone https://github.com/NoW-of-Work/now-search-visibility-audit.git ~/.clau
 ### Requirements
 
 - Web fetch and web search tools (built in on claude.ai and in Claude Code).
-- To build the report: Node.js with the `docx` package (the skill installs it if missing) and LibreOffice for
-  the PDF. Without LibreOffice you still get the Word document.
+- To build the report: Node.js 18 or later (no packages to install) and any headless Chromium for the PDF:
+  Chrome, Edge, Chromium, Brave, or Python Playwright. Without one you get a print-ready HTML file that saves to
+  PDF from any browser.
 - Optional: a shell with `curl`, `pdftoppm` and `pdftotext` for sharper technical checks and render
   verification.
 
 On claude.ai the report lands in your downloads. In Claude Code it's saved to a `visibility-audits/` folder in
-the directory you're working in (set `AUDIT_OUT` to choose another).
+the directory you're working in (set `AUDIT_OUT` to choose another). The audit's data file (`.json`) is saved
+next to the PDF so a later progress check can compare against it.
 
 ---
 
 ## What's in the report
 
-**Part 1, Visibility Audit:** cover with the AI Visibility Score and colour-coded SEO / GEO / AEO scores,
-executive summary, five-pillar score breakdown, pages audited, module-by-module findings, the AI citation
-spot-check, prioritized fixes, and what's working well.
+A designed, chart-led PDF: a navy cover with the score on a band track, a **Start here** page that explains
+SEO, AEO and GEO in plain words, and a chart or visual on every section (pillar chart, status bars, citation
+dots, client-evidence bars, a six-month off-site timeline, a 30/60/90 swimlane).
+
+**Part 1, Visibility Audit:** executive summary, five-pillar score breakdown, pages audited, SEO, AEO and GEO
+findings signal by signal, AI crawler access, the AI citation spot-check, prioritized fixes, and what's working
+well.
 
 **Part 2, On-Site Content Strategy & Roadmap:** inventory verdicts, coverage gap map, the content backlog, page
 build specs, production guardrails, and a measurement plan.
@@ -101,9 +110,8 @@ step-by-step detail with named platforms and targets.
 **Part 4, 30/60/90 Implementation Plan:** the full sequence with blocking items flagged and an honest resourcing
 note.
 
-The report uses The NoW of Work's brand and is signed "Prepared by The NoW of Work". See `sample/` for an
-example on a fictional company. The sample was produced by an earlier version and shows the first two parts
-only.
+The report uses The NoW of Work's brand and is signed "Prepared by The NoW of Work". See `sample/` for a full
+example on a fictional firm, built from `assets/report/example-audit.json`.
 
 ---
 
@@ -116,10 +124,15 @@ now-search-visibility-audit/
 │   ├── audit-modules.md          ← the six audit modules, AEO layer, honest limits
 │   ├── content-strategy.md       ← Phase 2: inventory, gaps, backlog, build specs
 │   ├── offsite-roadmap.md        ← Phase 3: the seven off-site plays
-│   ├── report-spec.md            ← brand system, report layout, render checks
+│   ├── report-spec.md            ← the audit data file, field by field, and render checks
 │   └── benchmarks.md             ← the evidence behind the weighting, and myths to avoid
+├── assets/report/
+│   ├── render-audit.mjs          ← builds the report from the audit data file
+│   ├── charts.mjs, components.mjs, report.css   ← the shared visual system
+│   ├── to-pdf.mjs                ← prints the HTML with any headless Chromium
+│   └── example-audit.json        ← a complete worked example
 ├── sample/
-│   └── SAMPLE-visibility-audit-and-content-roadmap.pdf
+│   └── SAMPLE-visibility-audit.pdf
 ├── LICENSE
 └── README.md
 ```
@@ -136,6 +149,15 @@ guidance, not a guarantee of ranking outcomes.
 ---
 
 ## Version history
+
+**6.0.0**: Visual report.
+- The Word report is replaced by a designed, chart-led PDF built from a single audit data file, so every audit
+  looks the same and can be compared month to month
+- New opening page explains SEO, AEO and GEO in plain words, with what each means for the business
+- Charts: score band track, five-pillar chart, points earned, status bars per analysis, citation dots,
+  client-evidence bars, six-month off-site timeline, 30/60/90 swimlane
+- No npm installs or LibreOffice: Node.js plus any headless Chromium, with a print-ready HTML fallback
+- The data file is saved next to the report as the baseline for the monthly progress check
 
 **5.2.0**: Public release.
 - Restructured for progressive loading: a ~330-line `SKILL.md` plus five reference files, down from one

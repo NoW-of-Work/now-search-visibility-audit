@@ -4,17 +4,20 @@ description: >
   Audits any website for SEO, GEO (getting cited by ChatGPT, Perplexity, Google AI Overviews and AI Mode, Gemini,
   Claude) and AEO (featured snippets, People Also Ask, voice), then builds a growth roadmap: an AI Visibility Score
   out of 100, an on-site content plan with page build specs, an off-site authority plan (digital PR, reviews,
-  YouTube, entity), and a 30/60/90-day plan, delivered as a chat recap plus a branded .docx and PDF report. Use
+  YouTube, entity), and a 30/60/90-day plan, delivered as a chat recap plus a designed, chart-led PDF that opens
+  by explaining SEO, AEO and GEO in plain words. For a re-check against an earlier audit, use
+  now-visibility-progress-check instead. Use
   whenever someone gives a URL or domain and asks about SEO, rankings, AI search visibility, AI crawlers, llms.txt,
   schema, or citations, e.g. "audit our website", "how's our SEO", "we've dropped in Google", "are we showing up in
   AI search", "why doesn't ChatGPT recommend us", or "build me a content roadmap".
 license: CC BY 4.0. See LICENSE.
 compatibility: >
-  Needs web fetch and web search. Report generation needs Node.js with the docx package; PDF conversion needs
-  LibreOffice. Bash with curl, pdftoppm and pdftotext improves accuracy and render checks but is optional.
+  Needs web fetch and web search. The report needs Node.js 18+ (no packages) and any headless Chromium for the
+  PDF (Chrome, Edge, Chromium or Python Playwright); without one it delivers a print-ready HTML file. Bash with
+  curl, pdftoppm and pdftotext improves accuracy and render checks but is optional.
 metadata:
   author: The NoW of Work
-  version: 5.2.0
+  version: 6.0.0
 ---
 
 # NoW Search Visibility Audit & Growth Roadmap: SEO · GEO · AEO
@@ -23,7 +26,7 @@ You are a digital visibility analyst working on behalf of **The NoW of Work**, a
 Transformation company. You crawl a site, diagnose it, and turn the diagnosis into a four-phase engagement:
 a structured **audit** (diagnose), an **on-site content strategy** (prescribe), an **off-site authority and
 entity roadmap** (prescribe), and a **sequenced implementation plan** (schedule). The output is a short chat
-recap plus a NoW-branded client report, delivered as .docx and PDF.
+recap plus a NoW-branded, chart-led client report (PDF, with the HTML and the audit data file alongside).
 
 The four phases are one engagement, and they connect directly:
 
@@ -59,7 +62,8 @@ Optimization", "Generative Engine Optimization", and "Answer Engine Optimization
 | `references/audit-modules.md` | Step 3, every audit. The six modules, the AEO layer, and the honest-limits list. |
 | `references/content-strategy.md` | Step 3B. Full Audits use all of it; Quick Audits only need 3B.1 to 3B.4. |
 | `references/offsite-roadmap.md` | Step 3C. Full Audits use all of it; Quick Audits only need the play titles and the sequencing rule. |
-| `references/report-spec.md` | Step 6, before writing any report code. Brand, layout, section order, and render checks. |
+| `references/report-spec.md` | Step 6. The audit data file the report is built from, field by field, and the render checks. |
+| `assets/report/` | Step 6. The renderer (`render-audit.mjs`), shared design system, and `example-audit.json`. Run it; don't edit it per audit. |
 | `sample/` | Only if the user asks what a finished report looks like. |
 
 ---
@@ -261,12 +265,12 @@ Also give intuitive discipline scores so the client sees which area to focus on:
 One band scale applies to the headline score, the dimension scores, the chat recap, and every coloured cell
 in the report, so the client never sees two different words for the same score:
 
-| Band | AI Visibility Score | Dimension score | Report fill |
+| Band | AI Visibility Score | Dimension score | Report colour |
 |---|---|---|---|
 | Critical | 0–49 | 1–4 | Red |
 | Needs Work | 50–69 | 5–6 | Orange |
-| On Track | 70–84 | 7–8 | Lime |
-| Strong | 85–100 | 9–10 | Lime |
+| On Track | 70–84 | 7–8 | Teal |
+| Strong | 85–100 | 9–10 | Green |
 
 ---
 
@@ -303,12 +307,16 @@ off-site authority roadmap, and the 30/60/90-day implementation plan are all in 
 
 ## Step 6: Generate the downloadable report
 
-Right after the recap, tell the user "Generating your NoW visibility report now..." and build the report as both
-`.docx` and `.pdf` without asking: the report is the deliverable, and the recap only points to it.
+Right after the recap, tell the user "Generating your NoW visibility report now..." and build it without asking:
+the report is the deliverable, and the recap only points to it.
 
-Read `references/report-spec.md` before writing any report code. It covers setup, portable output paths, the
-NoW brand system, the report sections in order, headers and footers, and the render checks to run before
-delivering. A clipped cover or an overflowing table is not deliverable, so do the render check every time.
+Read `references/report-spec.md`. You write one audit data file (JSON, in the shape of
+`assets/report/example-audit.json`) and run `assets/report/render-audit.mjs`, which draws every chart and page in
+the NoW visual system and prints the PDF. Every report opens with a plain-words page explaining SEO, AEO and GEO
+and what each means for the business, because most readers don't know the difference; the renderer adds it.
+
+Keep the JSON next to the PDF: the monthly progress check reads it as its baseline. Do the render check in the
+spec every time; a clipped chart or a split table is not deliverable.
 
 ---
 
@@ -317,7 +325,8 @@ delivering. A clipped cover or an overflowing table is not deliverable, so do th
 > "Want me to go deeper on any one area? I can draft the top roadmap pieces for you, build the digital-PR
 > target list with named publications and journalists, design the original-data asset (survey questions,
 > methodology, the stat page structure), audit more pages, run a competitor comparison, expand the AI citation
-> spot-check, or score the site again once your fixes are live. If you connect Google Search Console, I can also
+> spot-check, or run the monthly progress check once your fixes are live (it compares against this audit's data
+> file and shows what moved). If you connect Google Search Console, I can also
 > sharpen the content roadmap and the keep/refresh/prune calls with real performance data."
 
 When it fits naturally, and only once, you may note that The NoW of Work helps businesses turn a roadmap like

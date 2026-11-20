@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "domain": "harbourpine.example",
+    "site": "Harbour & Pine Advisory",
+    "date": "18 November 2026",
+    "isoDate": "2026-11-18",
+    "depth": "full",
+    "businessType": "Professional services",
+    "local": true,
+    "pagesRead": 34,
+    "pagesChecked": 12,
+    "sitemapUrls": 41,
+    "preparedBy": "The NoW of Work"
+  },
+  "summary": {
+    "headline": "Strong pages, *a weak signal off the site.* AI tools can read you; few of them name you.",
+    "lede": "A fictional sample. The site is well built and well written, but other sites rarely mention it, and that is what AI assistants lean on.",
+    "summaryHeadline": "Built well, *talked about rarely.*",
+    "paragraphs": [
+      "Harbour & Pine scores **61 out of 100**, in the Needs Work band. The technical base is solid: every page loads in raw HTML, Bing and Google both index the site, and no AI search bot is blocked.",
+      "The most urgent issue is the **stale Brave index**, which still shows the 2024 team page. Claude reads Brave, so Claude describes a firm that no longer exists.",
+      "The biggest opportunity is the firm's own data: 140 client engagements with before-and-after numbers that never appear on the site."
+    ],
+    "topFixes": [
+      "Redirect the five retired /team/* URLs and request a Brave recrawl.",
+      "Add a 40–60 word answer under the H1 of each of the six service pages.",
+      "Publish the engagement data as a research page with method and sample size."
+    ],
+    "strength": "Every service page names a real client and a measured result, which is rare for the category.",
+    "topContent": ["“What does a fractional CFO cost?” guide", "Industry page for dental practices", "Annual client results report"]
+  },
+  "score": {
+    "total": 61,
+    "takeaway": "Solid base; held back by off-site signals and thin answers.",
+    "headline": "The base is solid. *Off-page is the drag.*",
+    "lede": "Off-Page Consensus carries a quarter of the score and sits in the Critical band.",
+    "pillars": {
+      "tc": { "score": 84, "finding": "Raw HTML parity, clean status codes, indexed in Bing and Google; Brave shows retired pages." },
+      "cd": { "score": 63, "finding": "Named results on service pages; no original data, few cited statistics." },
+      "oa": { "score": 38, "finding": "One review platform, no Wikidata entry, two press mentions in three years." },
+      "se": { "score": 70, "finding": "Organization and Service schema present; no FAQPage, no sameAs beyond LinkedIn." },
+      "pm": { "score": 55, "finding": "Mobile LCP estimated near 2.6s from page weight.", "pending": true }
+    },
+    "seo": { "score": 7, "takeaway": "Clean technical foundation; titles and internal links need work." },
+    "geo": { "score": 4, "takeaway": "AI tools rarely name the firm; few outside mentions to draw on." },
+    "aeo": { "score": 5, "takeaway": "Service pages open with slogans, not answers." }
+  },
+  "pages": [
+    { "url": "/", "type": "Home", "notes": "H1 is a slogan; strong client logos with alt text." },
+    { "url": "/services/fractional-cfo", "type": "Service", "notes": "Named client result; no FAQ." },
+    { "url": "/insights/cash-flow-forecasting", "type": "Article", "notes": "Dated 2023; cites two sources." }
+  ],
+  "seo": {
+    "headline": "Readable, indexed, *and mostly tidy.*",
+    "lede": "Search engines can read every page. The gaps are in titles, internal links and one stale index.",
+    "sections": [
+      { "title": "Crawlability and rendering", "signals": [
+        { "signal": "Raw vs rendered HTML", "finding": "Body copy, links and JSON-LD all present before JavaScript runs.", "status": "good" },
+        { "signal": "Status codes", "finding": "34 of 34 pages return 200; five legacy URLs return 404.", "status": "needs" }
+      ]},
+      { "title": "Indexation", "signals": [
+        { "signal": "Bing", "finding": "DuckDuckGo returns 20+ current pages.", "status": "good" },
+        { "signal": "Brave", "finding": "Shows the 2024 /team page and two retired services.", "status": "missing" },
+        { "signal": "Bing Webmaster Tools", "finding": "No verification tag found; may be verified by DNS.", "status": "verify" }
+      ]},
+      { "title": "On-page", "signals": [
+        { "signal": "Title tags", "finding": "9 titles over 60 characters; 4 start with the brand name.", "status": "needs" },
+        { "signal": "H1s", "finding": "One H1 per page on all 34 pages.", "status": "good" }
+      ]}
+    ]
+  },
+  "aeo": {
+    "headline": "Good answers, *buried.*",
+    "sections": [ { "title": "Answer-first formatting", "signals": [
+      { "signal": "Answer capsules", "finding": "0 of 6 service pages answer the core question in the first 60 words.", "status": "missing" },
+      { "signal": "Question headings", "finding": "Insights articles use question H2s; service pages don't.", "status": "needs" },
+      { "signal": "FAQ markup", "finding": "No FAQPage anywhere.", "status": "missing" }
+    ]}]
+  },
+  "geo": {
+    "headline": "Real proof, *no outside echo.*",
+    "sections": [ { "title": "Content for AI citation", "signals": [
+      { "signal": "Statistics with sources", "finding": "4 across the site.", "status": "needs" },
+      { "signal": "Original data", "finding": "None published, though 140 engagements are tracked internally.", "status": "missing" },
+      { "signal": "Named experts", "finding": "Both partners have bios with credentials.", "status": "good" }
+    ]}, { "title": "Off-page consensus", "signals": [
+      { "signal": "Review platforms", "finding": "Google Business Profile only, 11 reviews.", "status": "needs" },
+      { "signal": "Wikidata", "finding": "No entry.", "status": "missing" }
+    ]}],
+    "callout": "**Lower-authority sites can win here.** Pages with original statistics and cited sources earn AI citations without a big link profile."
+  },
+  "crawlers": [
+    { "bot": "OAI-SearchBot", "engine": "ChatGPT search", "purpose": "Search-time", "verdict": "Allowed" },
+    { "bot": "Claude-SearchBot", "engine": "Claude", "purpose": "Search-time", "verdict": "Allowed" },
+    { "bot": "GPTBot", "engine": "OpenAI", "purpose": "Training", "verdict": "Blocked" }
+  ],
+  "citation": {
+    "summary": "**Named in 1 of 3 buyer prompts.** The one hit was a local search. National CFO firms and reference sites own the rest. (A full audit tests 8 to 12 prompts.)",
+    "prompts": [
+      { "prompt": "best fractional CFO in Victoria BC", "present": true, "instead": "–", "sources": "Google Business Profile, Clutch" },
+      { "prompt": "how much does a fractional CFO cost", "present": false, "instead": "Pilot, Bench", "sources": "Forbes, Reddit" },
+      { "prompt": "fractional CFO vs controller", "present": false, "instead": "Investopedia", "sources": "Investopedia, Quora" }
+    ]
+  },
+  "fixes": [
+    { "priority": "critical", "fix": "Redirect retired /team/* URLs and recrawl Brave", "module": "Technical", "effort": "2 hours", "hours": 2, "impact": "Claude stops describing the old team." },
+    { "priority": "quick", "fix": "Answer-first openings on six service pages", "module": "AEO", "effort": "1 day", "hours": 8, "impact": "Eligible for snippets and AI answer lifts." },
+    { "priority": "high", "fix": "Publish the engagement results as research", "module": "GEO", "effort": "3 days", "hours": 24, "impact": "The strongest citation asset the firm can make." },
+    { "priority": "future", "fix": "GA4 AI referrals channel", "module": "Measurement", "effort": "1 hour", "hours": 1, "impact": "Shows which AI tools send visits." }
+  ],
+  "working": [
+    { "what": "Named client results", "evidence": "Five of six service pages name a client and a number." },
+    { "what": "Clean rendering", "evidence": "Every page readable without JavaScript." }
+  ],
+  "content": {
+    "overview": "Stop writing generic finance tips. Start publishing what only this firm knows: its own engagement results and costs.",
+    "inventory": [
+      { "url": "/services/fractional-cfo", "type": "Service", "verdict": "Keep", "action": "Add answer capsule and FAQ." },
+      { "url": "/insights/cash-flow-forecasting", "type": "Article", "verdict": "Refresh", "action": "Update to 2026 data, add sources." },
+      { "url": "/insights/5-tips-budgeting", "type": "Article", "verdict": "Prune", "action": "Thin and generic; 301 to the forecasting guide." },
+      { "url": "/services/controller", "type": "Service", "verdict": "Merge", "action": "Fold into the CFO page as a comparison." }
+    ],
+    "funnel": [
+      { "stage": "Awareness", "covered": "Partly", "gap": "No cost guide; buyers ask about price first." },
+      { "stage": "Decision", "covered": "No", "gap": "No comparison page (fractional vs full-time vs firm)." }
+    ],
+    "types": [ { "type": "Original research", "present": "No", "note": "The biggest single gap." } ],
+    "roadmap": {
+      "now": [ { "piece": "Fractional CFO cost guide", "type": "Guide", "stage": "Awareness", "levers": "Price table, FAQPage, sourced ranges", "effort": "2 days", "impact": "High" } ],
+      "next": [ { "piece": "Client results report 2026", "type": "Research", "stage": "Consideration", "levers": "Original data, method, quotes", "effort": "5 days", "impact": "High" } ],
+      "later": [ { "piece": "Dental practices industry page", "type": "Industry", "stage": "Decision", "levers": "Named clients, local schema", "effort": "1 day", "impact": "Medium" } ]
+    },
+    "evidence": {
+      "headline": "Twelve named clients. *No industry page uses them.*",
+      "intro": "Dental and veterinary practices hold the most specific proof.",
+      "clusters": [
+        { "vertical": "Dental practices", "clients": ["Cook St Dental", "Oak Bay Smiles", "Shelbourne Dental", "Harbour Ortho"], "page": "/industries/dental", "first": true },
+        { "vertical": "Veterinary", "clients": ["Saanich Vet", "Island Animal Hospital", "Fernwood Vet"], "page": "/industries/veterinary", "first": true },
+        { "vertical": "Hospitality", "clients": ["Inner Harbour Hotel"], "page": "Case study" }
+      ],
+      "guardrail": "**Confirm consent before naming anyone.** A logo is consent to display it, not to publish a story or a number."
+    },
+    "specs": [
+      { "title": "Fractional CFO cost guide", "h1": "What a fractional CFO costs in 2026", "question": "How much does a fractional CFO cost?", "answer": "Most small firms pay $3,000 to $9,000 a month, depending on hours and scope.", "structure": "Price table by company size, what's included, when it's worth it.", "evidence": "Ranges from 140 engagements; one client quote.", "schema": "Article + FAQPage", "slug": "/guides/fractional-cfo-cost" }
+    ],
+    "guardrails": {
+      "production": ["AI drafts the scaffold; a partner adds the data and the judgment.", "Every statistic links to its source."],
+      "architecture": ["Service pages link to their guide and industry pages.", "No page more than three clicks from home."],
+      "measurement": ["GA4 AI referrals channel.", "Monthly re-run of the eight buyer prompts."]
+    }
+  },
+  "offsite": {
+    "overview": "Off-Page Consensus is the lowest pillar at 38. The firm is respected locally and almost invisible online.",
+    "plays": [
+      { "name": "1. Index hygiene", "sub": "Redirects, Brave recrawl", "effort": "low", "start": 0, "end": 1, "marker": { "week": 4.3, "label": "re-check Brave" }, "why": "Brave shows retired pages.", "firstStep": "Redirect /team/*.", "steps": ["Redirect the five retired URLs.", "Submit the sitemap to Brave."], "evidence": "Claude retrieves from Brave." },
+      { "name": "2. Review platforms", "sub": "Google, Clutch", "effort": "low", "start": 0, "end": 4.3, "why": "11 reviews on one platform.", "firstStep": "Claim Clutch.", "steps": ["Claim Clutch.", "Add a review ask at engagement close."] },
+      { "name": "3. Digital PR", "sub": "Results report, 20 outlets", "effort": "high", "start": 0, "end": 26, "note": "", "why": "Two mentions in three years.", "firstStep": "Build a 20-name media list.", "steps": ["Publish the results report.", "Pitch BC business press."], "expectation": "Zero to three mentions a month in the first quarter." },
+      { "name": "4. Community answers", "sub": "Reddit, 2 a week", "effort": "low", "start": 4.3, "end": 26, "ongoing": true, "why": "Reddit shows in 3 of 8 answers.", "firstStep": "Answer two r/smallbusiness CFO threads." }
+    ],
+    "prNote": "**Don't stop PR at week six.** Mentions compound slowly; the first quarter is the quiet part."
+  },
+  "plan": {
+    "lede": "The fixes take about a week. The content and PR work is a few hours a week after that.",
+    "d30": [
+      { "action": "Redirect retired URLs, recrawl Brave", "short": "Fix Brave index", "lane": "Technical", "done": "Brave shows the current team.", "effort": "2 hours", "impact": "High", "threshold": true },
+      { "action": "Answer-first openings on six service pages", "short": "Answer-first service pages", "lane": "Content", "done": "Each opens with a 40–60 word answer.", "effort": "1 day", "impact": "High" },
+      { "action": "Claim Clutch and add a review ask", "short": "Clutch + review ask", "lane": "Off-site", "done": "Profile live; ask in the close-out email.", "effort": "3 hours", "impact": "Medium" },
+      { "action": "Set up GA4 AI referrals channel", "short": "GA4 AI channel", "lane": "Measurement", "done": "Channel reports AI visits.", "effort": "1 hour", "impact": "Medium" }
+    ],
+    "d60": [
+      { "action": "Publish the cost guide", "short": "Cost guide", "lane": "Content", "done": "Live with FAQPage.", "effort": "2 days", "impact": "High" },
+      { "action": "Build the media list", "short": "20-name media list", "lane": "Off-site", "done": "Names, beats, last relevant story.", "effort": "4 hours", "impact": "Medium" }
+    ],
+    "d90": [
+      { "action": "Publish and pitch the results report", "short": "Results report + pitch", "lane": "Off-site", "done": "Sent to 20 outlets.", "effort": "5 days", "impact": "High" },
+      { "action": "Re-run the buyer prompts", "short": "Prompt re-check", "lane": "Measurement", "done": "Compared to the 2 of 8 baseline.", "effort": "1 hour", "impact": "Medium" }
+    ],
+    "ongoing": [ { "n": "1 / quarter", "l": "original-data piece" }, { "n": "2 / month", "l": "new reviews" }, { "n": "Monthly", "l": "buyer-prompt re-run" }, { "n": "Quarterly", "l": "full re-audit" } ],
+    "resourcing": "**About a week of specialist work for the fixes.** The durable gains come from the data asset and PR, which take a few hours a week and pay off over two to six months."
+  },
+  "method": {
+    "caveats": [
+      { "title": "Performance is estimated.", "text": "Run PageSpeed Insights on mobile to replace the estimate." },
+      { "title": "AI answers are a sample.", "text": "Eight prompts on one day. Treat it as a starting line." }
+    ],
+    "benchmarks": [ { "figure": "Brand mentions correlate with AI visibility about 3x more than backlinks", "source": "Ahrefs, 2025" } ],
+    "next": "Run the monthly progress check on or after 18 December 2026."
+  }
+}
