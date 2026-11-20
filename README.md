@@ -3,21 +3,25 @@
 **A Claude skill from [The NoW of Work](https://nowofwork.com).**
 
 Give Claude a URL and it audits the site across the three layers of modern search, then builds a growth roadmap
-from what it finds. You get a short recap in the chat and a branded, client-ready report as a Word document and
-a PDF, headlined by a single **AI Visibility Score out of 100**.
+from what it finds. You get a short recap in the chat and a designed, chart-led PDF report with four separate
+measures: access checks, an **AI Search Readiness Index** shown with a range, how often AI answers actually name
+the brand (per engine, with a margin of error), and AI visits from your analytics.
 
 - **SEO**: traditional search (Google, Bing). Crawlability, raw-vs-rendered content, titles, meta, headings,
-  canonicals, response codes, schema, internal links.
+  canonicals, response codes, internal links, indexation.
+- **AEO** (Answer Engine Optimization): being the answer shown above the links, in AI Overviews, AI Mode,
+  assistants and the featured snippets that remain. Plain answers near the top of the page and question-led
+  headings. No special markup is required.
 - **GEO** (Generative Engine Optimization): whether AI engines such as ChatGPT, Perplexity, Google AI Overviews
-  and AI Mode, Gemini, Claude and Copilot *cite* you. Expert quotes, statistics, source citations, E-E-A-T, entity
-  clarity, content density, freshness, and the earned-media bias of AI engines.
-- **AEO** (Answer Engine Optimization): featured snippets, People Also Ask, and voice. Answer-first formatting,
-  question-phrased headings, FAQ and HowTo schema.
+  and AI Mode, Gemini, Claude and Copilot *name and cite* you. Buyer-question coverage, original proof, entity
+  clarity, and the off-site presence (mentions, reviews, videos, directories) that tracks AI visibility most
+  closely.
 
-Ranking first no longer guarantees being cited in an AI answer: the overlap between Google's top 10 and the
-sources AI engines cite runs roughly 17–38%. A site can rank well and still be invisible to the engines buyers now
-use, and much of AI visibility is won off-site through brand mentions. This audit measures all of it and tells
-you what to fix first.
+For Google AI Overviews, only 17% to 38% of citations come from the organic top 10 (early 2026, vendor studies),
+so ranking well doesn't guarantee being named. Two Ahrefs studies (vendor, correlational) found brand mentions
+tracked AI visibility far more than backlinks or page count; a separate study (Moore and Dunne, vendor authors,
+B2B SaaS) found domain-level factors explained far more than page features. So much of the work is off-site. This audit
+checks all of it, says what it couldn't see, and tells you what to fix first.
 
 Most readers don't know the difference between the three, so every report opens with a one-page explainer:
 where each shows up, what it measures, and what it does for the business.
@@ -28,21 +32,29 @@ where each shows up, what it measures, and what it does for the business.
 
 The audit runs in four phases, and each one feeds the next:
 
-1. **Audit (diagnose).** Six modules: technical and performance, schema and entity graph, GEO content, AI
-   crawler access (GPTBot, OAI-SearchBot, Claude-SearchBot, PerplexityBot and others), off-page brand mentions,
-   and an AI citation spot-check that tests which brands show up for your buyers' questions. Also screens for
-   Google spam-policy risks.
-2. **On-site content strategy (prescribe).** A keep / refresh / merge / prune verdict for every page, a funnel
-   and content-type gap map, a Now / Next / Later backlog, and answer-first build specs for the top pieces.
-3. **Off-site authority roadmap (prescribe).** The plays that earn AI citations off the site (Bing and Brave
-   indexation, entity building, review platforms, digital PR, YouTube, community, local), each with numbered
-   steps and the specific platforms for your category.
+1. **Audit (diagnose).** Six modules: technical, performance and penalty screen; schema and entity markup;
+   content and buyer-question alignment; AI crawler access and first-party AI controls (OAI-SearchBot,
+   Claude-SearchBot, PerplexityBot, training bots, CDN blocking, Google's AI opt-out setting); off-site presence
+   and entity; and observed AI visibility, a frozen panel of buyer questions run repeatedly on several AI engines.
+   It screens for Google's named spam-policy patterns.
+2. **On-site content strategy (prescribe).** A keep / refresh / merge / prune verdict for every page, a
+   buyer-question, funnel and content-type gap map, a Now / Next / Later backlog, and answer-first build specs for
+   the top pieces.
+3. **Off-site authority roadmap (prescribe).** The plays most associated with being named in AI answers (Bing
+   and Brave indexation, entity building, review platforms, digital PR, YouTube, community, local), each with
+   numbered steps and the specific platforms for your category.
 4. **30/60/90-day plan (schedule).** Everything above in one dependency-ordered plan across technical, content,
    off-site and measurement work, with the blocking items flagged.
 
-There are two depths. A **Quick Audit** gives the scores, the top fixes, and short lists of content and off-site
-opportunities. A **Full Audit + Growth Roadmap** runs all six modules and produces the complete four-part report.
-Claude asks which you want before it starts.
+There are two depths. A **Quick Audit** gives the access checks, the readiness index with its range, a
+search-proxy spot-check of whether AI answers name you, the top fixes, and short lists of content and off-site
+opportunities. A **Full Audit + Growth Roadmap** adds a measured AI visibility test (20 or more buyer questions,
+each run at least eight times on three AI engines, spread over at least eight separate days, in practice one run
+a day for eight days) and produces the complete four-part report. Claude asks which you want before it starts.
+One honest limit up front: at 20 prompts over 8 days a re-check only detects large moves (at least about 16
+points; each report prints its own figure; our calculation). Precision comes from more prompts run on more
+separate days, not from more runs of the same prompt on the same days. For month-to-month tracking use 40 or more
+prompts, or treat monthly results as descriptive and test quarterly.
 
 ---
 
@@ -93,13 +105,28 @@ next to the PDF so a later progress check can compare against it.
 
 ## What's in the report
 
-A designed, chart-led PDF: a navy cover with the score on a band track, a **Start here** page that explains
-SEO, AEO and GEO in plain words, and a chart or visual on every section (pillar chart, status bars, citation
-dots, client-evidence bars, a six-month off-site timeline, a 30/60/90 swimlane).
+A designed, chart-led PDF: a navy cover with the readiness index on a band track, labelled with both its
+unverified range and its judgment range, and each AI engine's mention rate, a **Start here** page that explains SEO, AEO and GEO in plain words, and a chart or visual on
+every section (gate checks, pillar ranges, checks met per discipline, mention rates with intervals per engine,
+client-evidence bars, a six-month off-site timeline, a 30/60/90 swimlane).
 
-**Part 1, Visibility Audit:** executive summary, five-pillar score breakdown, pages audited, SEO, AEO and GEO
-findings signal by signal, AI crawler access, the AI citation spot-check, prioritized fixes, and what's working
-well.
+The four measures are kept apart, because blending them would hide what's known:
+
+1. **Access checks** (pass, fail, verify, or a documented choice). A failed check is a Critical blocker.
+2. **AI Search Readiness Index** (0–100): 37 checks across five pillars, weighted Off-site 45, Technical 25,
+   Buyer questions 20, Structured data 5, Page experience 5. Shown with two ranges (what unverifiable checks and
+   judgment calls could change), a confidence label and a sensitivity check under other weightings. It is an
+   expert-weighted checklist, not validated against outcomes, and the report says so.
+3. **Observed AI visibility**: how often AI answers name the brand, per engine, with a 95% interval that allows
+   for repeated runs of the same question and day-to-day variation, plus the smallest change a re-check could
+   detect.
+4. **Outcomes**: AI referral sessions and conversions from your analytics, always a lower bound.
+
+SEO, AEO and GEO are shown as checks met, not as scores out of 10, so each word maps to concrete work.
+
+**Part 1, Visibility Audit:** executive summary, access checks, the index by pillar, choices you've made, what
+we could not see, pages audited, every check with its evidence and grade, AI crawler access, observed AI
+visibility, prioritized fixes, and what's working well.
 
 **Part 2, On-Site Content Strategy & Roadmap:** inventory verdicts, coverage gap map, the content backlog, page
 build specs, production guardrails, and a measurement plan.
@@ -119,15 +146,17 @@ example on a fictional firm, built from `assets/report/example-audit.json`.
 
 ```
 now-search-visibility-audit/
-├── SKILL.md                      ← the workflow Claude follows, scoring, and principles
+├── SKILL.md                      ← the workflow Claude follows and its principles
 ├── references/
 │   ├── audit-modules.md          ← the six audit modules, AEO layer, honest limits
+│   ├── readiness-checklist.md    ← the scoring contract: gates, 37 checks, weights, visibility and re-audit rules
 │   ├── content-strategy.md       ← Phase 2: inventory, gaps, backlog, build specs
 │   ├── offsite-roadmap.md        ← Phase 3: the seven off-site plays
 │   ├── report-spec.md            ← the audit data file, field by field, and render checks
-│   └── benchmarks.md             ← the evidence behind the weighting, and myths to avoid
+│   └── benchmarks.md             ← every figure the audit may quote, graded, plus myths to avoid
 ├── assets/report/
 │   ├── render-audit.mjs          ← builds the report from the audit data file
+│   ├── scoring.mjs               ← computes and validates every score; refuses files that break the contract
 │   ├── charts.mjs, components.mjs, report.css   ← the shared visual system
 │   ├── to-pdf.mjs                ← prints the HTML with any headless Chromium
 │   └── example-audit.json        ← a complete worked example
@@ -139,16 +168,46 @@ now-search-visibility-audit/
 
 Claude loads `SKILL.md` when the skill triggers and reads each reference file only when it reaches that step.
 
-**A note on the numbers.** The benchmarks (citation-lift figures, Core Web Vitals thresholds, mention
-correlations and so on) come from third-party studies published in 2024–2026. They are directional and will
-change. The skill tells Claude to treat them that way and to check current figures with a web search when a
-number drives a recommendation. It also never invents measured data: where an HTML fetch can't measure something
-(real Core Web Vitals, Search Console data), the report names the tool to use instead. Findings are expert
-guidance, not a guarantee of ranking outcomes.
+**A note on the numbers.** Every figure the report may quote lives in `references/benchmarks.md` with its
+source, date, method, a vendor flag and an evidence grade (A: platform documentation or peer-reviewed; B:
+preprints, large studies with published methods and self-reported platform figures; C: small, single-client,
+opinion, single press reports or undisclosed methods). Each check in the report carries its own evidence label:
+Measured, Observed or Inferred.
+Almost all AI-visibility figures are correlations published by vendors, and the report words them that way. The
+skill never invents measured data: where an HTML fetch can't measure something (real Core Web Vitals, Search
+Console data, review counts, mention volume), the check is marked unverifiable and the report names the tool to
+use instead. The weights are expert judgment, not fitted to outcomes. Findings are expert guidance, not a
+guarantee of ranking outcomes.
 
 ---
 
 ## Version history
+
+**7.0.0**: Evidence-based rebuild.
+- Scoring model 7.0. The single AI Visibility Score is replaced by four separate measures: access gates, an
+  AI Search Readiness Index, observed AI visibility and outcomes
+- The index is a published checklist of 37 checks across five pillars, with weights ordered by the evidence
+  (expert judgment, not fitted: Off-site 45,
+  Technical 25, Buyer questions 20, Structured data 5, Page experience 5), shown with an unverified range, a
+  judgment range, a confidence label and a sensitivity check. The renderer computes every number and refuses a
+  data file that breaks the contract. When a heavily weighted pillar can't be assessed at all, there is no point
+  estimate and no judgment range, only a range. A failed access check caps the index at 49 (Critical) and the
+  report shows the uncapped ranges as "once the gate is fixed"
+- Access gates can be a documented choice (deliberately blocking AI search bots, or opting out of Google's AI
+  features), shown with its cost instead of being scored as a failure. The spam-policy gate uses Google's own
+  policy headings only. Sites behind Cloudflare are checked for the Training "Block" setting, which since
+  15 Sep 2026 also stops Googlebot and Bingbot
+- Observed AI visibility: a frozen panel of at least 20 buyer questions, each run at least eight times on at
+  least three engines over at least eight separate dates, with prompt sources and competitor mentions recorded,
+  per-engine rates with intervals that allow for repeated runs and day-to-day variation (t critical values from
+  the smaller of the number of prompts and days), and an honestly planned smallest detectable change. No pooled
+  rate
+- SEO, AEO and GEO are shown as checks met, not scores out of 10
+- Every quoted figure is graded in `benchmarks.md` with source, date, method and vendor flag; claims that failed
+  verification are listed so they aren't reused
+- Page speed is scored only from a real measurement, never estimated
+- The progress check compares audits only on the same scoring model, like for like on checks assessed both times,
+  against the original audit, with formal verdicts at the quarterly re-audit
 
 **6.0.0**: Visual report.
 - The Word report is replaced by a designed, chart-led PDF built from a single audit data file, so every audit

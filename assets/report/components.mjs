@@ -24,17 +24,17 @@ export function page({ title, footer, body }) {
 
 export const eyebrow = (n, label) => `<div class="eyebrow"><b></b>${n ? `${esc(n)} · ` : ''}${esc(label)}</div>`;
 export const head = (n, label, h1, lede) =>
-  `${eyebrow(n, label)}<h1>${md(h1)}</h1>${lede ? `<p class="lede">${md(lede)}</p>` : ''}`;
+  `<div style="break-inside:avoid">${eyebrow(n, label)}<h1>${md(h1)}</h1>${lede ? `<p class="lede">${md(lede)}</p>` : ''}</div>`;
 export const section = (inner, { flow = false } = {}) => `<section class="section${flow ? ' flow' : ''}">${inner}</section>`;
 export const partDivider = (n, title, desc) =>
   `<div class="part"><div class="n">Part ${esc(n)}</div><div class="t">${esc(title)}</div>${desc ? `<div class="d">${md(desc)}</div>` : ''}</div>`;
 
 /** Cover. score/prev on 100; dims: [{k, score, prev?}] */
-export function cover({ kicker, domain, score, prev = null, headline, lede, dims, footLeft, footRight = 'The NoW of Work' }) {
+export function cover({ kicker, domain, score, prev = null, range = null, jrange = null, capped = false, note = null, bandLabel = null, scoreLabel = 'AI search<br>readiness / 100', headline, lede, dims = [], chips: rawChips = null, footLeft, footRight = 'The NoW of Work' }) {
   const big = prev != null
-    ? `<div class="from">${prev}</div><div class="arrow">→</div><div class="to">${score}</div><div class="of">AI visibility<br>score / 100</div>`
-    : `<div class="to">${score}</div><div class="of">AI visibility<br>score / 100<b>${band(score)}</b></div>`;
-  const chips = dims.map((d) => {
+    ? `<div class="from">${prev}</div><div class="arrow">→</div><div class="to">${score}</div><div class="of">${scoreLabel}</div>`
+    : `<div class="to"${score == null ? ' style="font-size:96px;white-space:nowrap;letter-spacing:-.04em"' : ''}>${score == null ? `${range[0]}–${range[1]}` : score}</div><div class="of">${scoreLabel}${range ? `<span style="display:block;color:#fff;margin-top:6px;text-transform:none">${capped ? 'once the gate is fixed:<br>' : ''}unverified range ${range[0]}–${range[1]}${jrange && jrange[0] != null ? `<br>judgment range ${jrange[0]}–${jrange[1]}` : ''}</span>` : ''}<b>${esc(bandLabel || band(score))}</b></div>`;
+  const chips = rawChips ? rawChips.map((c) => `<div class="chip"><div class="k">${esc(c.k)}<i>${esc(c.name || '')}</i></div><div class="v">${c.v}</div><div class="s">${esc(c.s)}</div></div>`).join('') : dims.map((d) => {
     const v = d.prev != null ? `<span>${d.prev} →</span> ${d.score}` : `${d.score}<span style="font-size:18px"> / 10</span>`;
     let s = band10(d.score);
     if (d.prev != null && band10(d.prev) !== s) s = `${band10(d.prev)} to ${s}`;
@@ -44,7 +44,7 @@ export function cover({ kicker, domain, score, prev = null, headline, lede, dims
   return `<section class="cover"><img class="logo" src="${LOGO_DARK()}" alt="The NoW of Work">
   ${eyebrow('', kicker)}<div class="domain">${esc(domain)}</div>
   <div class="bigscore">${big}</div>
-  <div style="margin-top:22px">${bandTrack({ score, prev, width: 680 })}</div>
+  <div style="margin-top:22px">${bandTrack({ score: score ?? Math.round((range[0] + range[1]) / 2), prev, range, rangeOnly: score == null, capped, note, width: 680 })}</div>
   <h1>${md(headline)}</h1>${lede ? `<p class="lede">${md(lede)}</p>` : ''}
   <div class="chips">${chips}</div>
   <div class="foot"><span>${esc(footLeft)}</span><span>${esc(footRight)}</span></div></section>`;
@@ -58,19 +58,19 @@ export function definitionsPage(n = '00') {
       where: 'The list of results on Google and Bing, including maps.',
       what: 'Whether search engines can read your pages, understand them, and rank them for the words buyers type.',
       biz: '<b>Traffic you don’t pay for.</b> People searching for what you sell land on your site.',
-      moves: 'Fast pages that search engines can read, clear titles, links from other sites.' },
+      moves: 'Pages search engines can read and index, clear titles, links and mentions from other sites, then speed.' },
     { ab: 'AEO', nm: 'Answer Engine Optimization', c: C.orange, c2: '#9a5121',
       q: 'Are you the answer?',
-      where: 'Featured snippets, “People also ask” boxes, and voice assistants such as Siri and Alexa.',
-      what: 'Whether your pages give a short, direct answer that a search engine can lift and show on its own.',
-      biz: '<b>You’re the name in the answer, even when nobody clicks.</b> It builds trust on the questions buyers ask early.',
-      moves: 'Question headings, a 40–60 word answer under each, FAQ markup.' },
+      where: 'Anywhere one answer is shown above the links: Google’s AI Overviews and AI Mode, assistants, and the featured snippets that remain.',
+      what: 'Whether your pages answer buyers’ questions directly and clearly enough to be lifted into that answer.',
+      biz: '<b>You’re the name in the answer, even when nobody clicks.</b> People clicked a regular result in 8% of visits with an AI summary against 15% without (Pew Research Center, 2025).',
+      moves: 'A plain, direct answer near the top of the page, headings that say the question, and specific facts.' },
     { ab: 'GEO', nm: 'Generative Engine Optimization', c: C.teal, c2: C.tealD,
       q: 'Do AI assistants recommend you?',
       where: 'ChatGPT, Claude, Perplexity, Gemini, Copilot, and Google’s AI Overviews and AI Mode.',
       what: 'Whether AI tools name and cite you when someone asks them for advice or a shortlist.',
-      biz: '<b>The shortlist now forms inside the AI answer.</b> If you aren’t named, you aren’t considered, and the buyer may never visit your site.',
-      moves: 'Original data, clear facts about who you are, and mentions on trusted sites: reviews, press, YouTube, Reddit.' },
+      biz: '<b>Being named is a new kind of first impression.</b> AI visits are still a small share of traffic (about 0.3–1% of site visits in 2025–26 studies), and it is a separate place a buyer can meet you, with its own rules.',
+      moves: 'Being mentioned on the sites AI answers draw from (reviews, press, YouTube, communities), clear facts about who you are, and original data.' },
   ];
   const cards = defs.map((d) => `<div class="def" style="--c:${d.c};--c2:${d.c2}">
     <div class="ab">${d.ab}</div><div class="nm">${d.nm}</div><div class="q">${d.q}</div>
@@ -79,25 +79,24 @@ export function definitionsPage(n = '00') {
     <div class="biz">${d.biz}</div>
     <div class="k">What moves it</div><p>${d.moves}</p></div>`).join('');
   // Stack diagram: SEO is the foundation the other two sit on.
-  const stack = `<svg width="150" height="150" viewBox="0 0 150 150">
+  const stack = `<svg width="130" height="114" viewBox="0 0 150 132">
     <rect x="0" y="0" width="72" height="62" rx="8" fill="${C.orange}"/><text x="36" y="37" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">AEO</text>
     <rect x="78" y="0" width="72" height="62" rx="8" fill="${C.teal}"/><text x="114" y="37" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">GEO</text>
     <rect x="0" y="70" width="150" height="62" rx="8" fill="${C.slate}"/><text x="75" y="99" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">SEO</text>
     <text x="75" y="116" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.8)">the foundation</text></svg>`;
-  const engines = [['Google', 'Google results, AI Overviews, AI Mode, Gemini'], ['Bing', 'Bing results, ChatGPT search, Copilot'], ['Brave', 'Claude’s web search']];
+  const engines = [['Google’s index', 'Google results, AI Overviews, AI Mode, Gemini'], ['Bing’s index', 'Bing results and Copilot'], ['OpenAI’s own index', 'ChatGPT search (OpenAI doesn’t publish its other providers)'], ['Brave’s index, plus Anthropic’s own crawler', 'Claude’s web search'], ['Perplexity’s own index', 'Perplexity']];
   const bandsRow = BANDS.map((b) => `<span><i style="background:${b.fill};border:1px solid ${C.line}"></i>${b.name} ${b.lo}–${b.hi === 100 ? 100 : b.hi - 1}</span>`).join('');
-  return `<section class="section">${head(n, 'Start here', 'Three ways buyers find you. *Each one is scored here.*',
+  return `<section class="section">${head(n, 'Start here', 'Three ways buyers find you. *Each one is checked here.*',
     'Search has split into three places a buyer can meet your business. They overlap, but each needs different work, and a site can be strong in one and invisible in another.')}
   <div class="defs">${cards}</div>
   <div class="stack">${stack}<div>
     <h3 style="margin-top:0">How they fit together</h3>
-    <p style="font-size:11px;line-height:1.5">SEO is the foundation: if search engines can’t read and trust your site, nothing else works. AEO and GEO are built on top of it. Ranking first no longer guarantees you’re the one an AI tool names, so all three are measured separately.</p>
-    <table class="data" style="margin-top:8px"><thead><tr><th>Index</th><th>Who reads from it</th></tr></thead><tbody>
+    <p style="font-size:11px;line-height:1.5">SEO is the foundation: most AI tools start from a search index, Google’s, Bing’s or their own. Google says optimizing for its AI features is still SEO (May 2026), and it’s right that the work overlaps. We separate the three to show where your work is needed, because ranking well doesn’t guarantee an AI tool names you.</p>
+    <table class="data tight" style="margin-top:6px"><thead><tr><th>Index</th><th>What reads from it</th></tr></thead><tbody>
     ${engines.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('')}</tbody></table>
   </div></div>
-  <h3>How to read the scores</h3>
-  <p style="font-size:11px">The <b>AI Visibility Score</b> (out of 100) rolls five weighted pillars into one number. SEO, AEO and GEO are each scored out of 10. All scores use the same four bands:</p>
-  <div class="legend">${bandsRow}</div></section>`;
+  <p style="font-size:10.5px;margin-top:12px"><b>How to read the scores.</b> The report keeps four measures apart: access checks (pass or fail), the AI Search Readiness Index (out of 100, with a range), how often AI answers actually name you, and AI visits in your analytics. Terms are explained on the last page. Scores use four bands:</p>
+  <div class="legend" style="margin-top:6px">${bandsRow}</div></section>`;
 }
 
 export const checks = (items, cls = '') => `<div class="checks">${items.map((i) =>
@@ -170,4 +169,35 @@ export function table(cols, rows, { groupKey = null } = {}) {
     }).join('')}</tr>`;
   }).join('');
   return `<table class="data"><thead><tr>${cols.map((c) => `<th${c.w ? ` style="width:${c.w}"` : ''}>${esc(c.h)}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
+}
+
+/** Plain-words glossary, printed as the last page of every report. */
+export function glossary() {
+  const terms = [
+    ['AI Overview / AI Mode', 'Google’s AI-written answers: a summary above the results, and a separate chat-style search mode.'],
+    ['Access check', 'A pass-or-fail test of whether search engines and AI tools can reach and read the site at all.'],
+    ['Readiness Index', 'Our 0–100 count of what the site does that the evidence links to being found. A checklist, not a forecast.'],
+    ['Unverified range', 'How far the index could move if the things we couldn’t see turned out either way.'],
+    ['Judgment range', 'How far the index could move if every “partial” call we made went the other way.'],
+    ['Pillar', 'One of the five groups of checks: off-site presence, technical, buyer questions, structured data, page speed.'],
+    ['Evidence (on each check)', 'Measured: from a tool or your own data. Observed: we saw it directly. Inferred: a proxy or a judgment call.'],
+    ['Source grade (method page)', 'How strong a published figure is. A: platform documentation or peer-reviewed. B: preprints and large studies with published methods. C: small or single-source.'],
+    ['Band', 'The word for a score range: Critical, Needs Work, On Track or Strong. Conventional cut points, not calibrated.'],
+    ['Provisional', 'The index rests on too much inferred or unverifiable evidence to be read as firm. The report says why.'],
+    ['Design effect', 'How much repeated runs of the same question count for less than truly separate answers.'],
+    ['Effective sample', 'The number of fully independent answers the panel is worth once the design effect is allowed for.'],
+    ['Smallest detectable change', 'The smallest move in a mention rate the next check could tell apart from noise.'],
+    ['Searched the web', 'Answers where the AI tool actually looked online, rather than answering from memory.'],
+    ['Mention rate', 'The share of AI answers to buyer questions that name your brand.'],
+    ['95% range', 'The span the rate on this question panel likely sits in, allowing for run-to-run and day-to-day variation. It doesn’t cover questions we didn’t ask.'],
+    ['Structured data (schema)', 'Code on a page that labels facts (your name, address, prices) so machines read them reliably.'],
+    ['sameAs', 'Structured data that links your site to your official profiles elsewhere.'],
+    ['Entity', 'How search engines and AI tools recognize your business as one specific thing, with consistent facts.'],
+    ['Index', 'A search engine’s stored copy of the web. A page that isn’t in it can’t be shown or cited.'],
+    ['Crawler (bot)', 'Software that fetches pages for a search engine or AI tool. robots.txt tells each one what it may fetch.'],
+    ['Doorway pages', 'Many near-identical pages made to catch searches (one per city, say). Against Google’s policies.'],
+    ['Core Web Vitals', 'Google’s three page-speed measures: loading (LCP), responsiveness (INP) and stability (CLS).'],
+  ];
+  return `<section class="section">${head('', 'Words used in this report', 'Plain words for *the technical terms*.', null)}
+  <table class="data" style="margin-top:14px"><tbody>${terms.map(([a, b]) => `<tr><td style="width:28%">${a}</td><td>${b}</td></tr>`).join('')}</tbody></table></section>`;
 }

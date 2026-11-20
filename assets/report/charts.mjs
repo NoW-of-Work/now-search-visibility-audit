@@ -31,7 +31,7 @@ const svg = (w, h, body) => `<svg width="${w}" height="${h}" viewBox="0 0 ${w} $
 const mono = { 'font-family': 'IBM Plex Mono, monospace' };
 
 /** Cover score track. prev is optional (progress reports). */
-export function bandTrack({ score, prev = null, width = 680, dark = true }) {
+export function bandTrack({ score, prev = null, range = null, width = 680, dark = true, rangeOnly = false, capped = false, note = null }) {
   const x = (v) => (v / 100) * width;
   const label = dark ? 'rgba(255,255,255,.6)' : C.grey;
   let o = '';
@@ -39,15 +39,17 @@ export function bandTrack({ score, prev = null, width = 680, dark = true }) {
     o += `<rect x="${x(b.lo) + 1}" y="30" width="${x(b.hi) - x(b.lo) - 2}" height="10" rx="3" fill="${dark ? b.dark : b.fill}"/>`;
     o += t(x(b.lo) + 4, 58, `${b.name} ${b.lo}–${b.hi === 100 ? 100 : b.hi - 1}`, { fill: label, 'font-weight': 600 });
   });
+  if (range && range[1] > range[0]) o += `<rect x="${x(range[0])}" y="27" width="${x(range[1]) - x(range[0])}" height="16" rx="8" fill="${dark ? 'rgba(255,255,255,.28)' : 'rgba(39,47,70,.18)'}"/>`;
   const next = BANDS.find((b) => b.lo > score);
   if (prev != null) {
     o += `<line x1="${x(prev)}" x2="${x(score)}" y1="35" y2="35" stroke="${dark ? '#fff' : C.ink}" stroke-width="2"/>`;
     o += `<circle cx="${x(prev)}" cy="35" r="7" fill="${dark ? C.navy : '#fff'}" stroke="${label}" stroke-width="2"/>`;
     o += t(x(prev), 16, `Before · ${prev}`, { 'text-anchor': prev < score ? 'end' : 'start', 'font-size': 11, fill: label, 'font-weight': 700 });
   }
+  if (rangeOnly) return svg(width, 64, o + t(x((range[0] + range[1]) / 2), 16, `Range ${range[0]}–${range[1]} · no point estimate`, { 'text-anchor': 'middle', 'font-size': 11, fill: dark ? C.lime : C.tealD, 'font-weight': 800 }));
   o += `<circle cx="${x(score)}" cy="35" r="9" fill="${C.lime}" stroke="${dark ? '#fff' : C.ink}" stroke-width="2"/>`;
-  let lab = `Now · ${score}`;
-  if (next && next.lo - score <= 5) lab += ` · ${next.lo - score} short of ${next.name}`;
+  let lab = capped ? `Now · ${score} · capped by a failed access check` : note ? `Now · ${score} · ${note}` : `Now · ${score}`;
+  if (!capped && !note && next && next.lo - score <= 5) lab += ` · ${next.lo - score} short of ${next.name}`;
   o += t(prev != null && prev > score ? x(score) - 8 : x(score) + (prev != null ? 8 : 0), 16, lab,
     { 'text-anchor': prev != null && prev > score ? 'end' : prev != null ? 'start' : 'middle', 'font-size': 11, fill: dark ? C.lime : C.tealD, 'font-weight': 800 });
   return svg(width, 64, o);
@@ -55,7 +57,7 @@ export function bandTrack({ score, prev = null, width = 680, dark = true }) {
 
 /** Five-pillar chart. Rows: {name, weight, score, prev?, pending?}. Dumbbells when prev is set. */
 export function pillarChart(rows, { width = 680 } = {}) {
-  const L = 200, R = width - 50, x = (v) => L + ((R - L) * v) / 100, top = 26, rh = 44;
+  const L = 200, R = width - 85, x = (v) => L + ((R - L) * v) / 100, top = 26, rh = 44;
   const H = top + rows.length * rh;
   let o = '';
   BANDS.forEach((b) => {
@@ -157,13 +159,14 @@ export function lenses(rows, { width = 270 } = {}) {
 }
 
 /** Citation dots: hits of total. */
-export function dots(hits, total, { dark = true } = {}) {
+export function dots(hits, total, { dark = true, perRow = 8 } = {}) {
   let o = '';
+  const rows = Math.ceil(total / perRow);
   for (let i = 0; i < total; i++) {
-    const on = i < hits;
-    o += `<circle cx="${12 + i * 25.5}" cy="17" r="10" fill="${on ? C.lime : 'none'}" stroke="${on ? C.lime : dark ? 'rgba(255,255,255,.35)' : C.grey}" stroke-width="2"/>`;
+    const on = i < hits, cx = 12 + (i % perRow) * 25.5, cy = 12 + Math.floor(i / perRow) * 24;
+    o += `<circle cx="${cx}" cy="${cy}" r="9" fill="${on ? C.lime : 'none'}" stroke="${on ? C.lime : dark ? 'rgba(255,255,255,.35)' : C.grey}" stroke-width="2"/>`;
   }
-  return svg(Math.max(24 + (total - 1) * 25.5, 40), 34, o);
+  return svg(24 + (Math.min(total, perRow) - 1) * 25.5, rows * 24 + 2, o);
 }
 
 /** Stacked status bar for a block of audit signals. counts: {good, needs, missing, verify} */
@@ -213,7 +216,7 @@ export function gantt(plays, { width = 680, quitWeek = 6 } = {}) {
   const hasPR = plays.some((p) => p.effort === 'high');
   if (hasPR && quitWeek) {
     o += `<line x1="${x(quitWeek)}" x2="${x(quitWeek)}" y1="${top - 8}" y2="${H}" stroke="${C.red}" stroke-dasharray="4 3" stroke-width="1.5"/>`;
-    o += t(x(quitWeek) + 4, H + 14, `Week ${quitWeek}: where PR usually gets dropped`, { 'font-size': 9.5, fill: C.red, 'font-weight': 700 });
+    o += t(x(quitWeek) + 4, H + 14, `Week ${quitWeek}: where PR often stalls (our experience)`, { 'font-size': 9.5, fill: C.red, 'font-weight': 700 });
   }
   plays.forEach((p, i) => {
     const y = top + i * rh, end = p.ongoing ? wk : p.end;
@@ -272,4 +275,71 @@ export function scopeBars(rows, { width = 680 } = {}) {
     o += t(inside ? x(r.value) - 10 : x(r.value) + 8, y + 15, r.text, { 'text-anchor': inside ? 'end' : 'start', 'font-size': 10.5, 'font-weight': 700, fill: inside ? '#fff' : C.body });
   });
   return svg(width, rows.length * 36 + 8, o);
+}
+
+/** v7 pillars as point + range whiskers on the band scale. rows: {name, weight (effective), score, lo, hi, measured, gradeCShare} */
+export function rangeChart(rows, { width = 680 } = {}) {
+  const L = 210, R = width - 70, x = (v) => L + ((R - L) * v) / 100, top = 26, rh = 44;
+  const H = top + rows.length * rh;
+  let o = '';
+  BANDS.forEach((b) => {
+    o += `<rect x="${x(b.lo)}" y="${top - 6}" width="${x(b.hi) - x(b.lo)}" height="${H - top + 2}" fill="${b.fill}" opacity=".75"/>`;
+    o += t(x(b.lo) + 4, top - 10, b.name, { 'font-size': 9, fill: C.grey, 'font-weight': 600 });
+  });
+  [0, 25, 50, 75, 100].forEach((v) => (o += t(x(v), H + 14, v, { 'font-size': 9, fill: C.grey, 'text-anchor': 'middle' })));
+  rows.forEach((r, i) => {
+    const y = top + i * rh + rh / 2 - 2;
+    o += t(0, y - 2, r.name, { 'font-size': 12, 'font-weight': 800, fill: C.ink });
+    o += t(0, y + 12, r.measured ? `weight ${r.weight}%` : r.key === 'px' ? 'not measured · dropped' : 'no checks assessed · range only', { 'font-size': 9, fill: C.grey, ...mono });
+    if (!r.measured) return;
+    const s = Math.round(r.score), lo = Math.round(r.lo), hi = Math.round(r.hi);
+    if (hi > lo) {
+      o += `<line x1="${x(lo)}" x2="${x(hi)}" y1="${y}" y2="${y}" stroke="${C.grey}" stroke-width="2"/>`;
+      o += `<line x1="${x(lo)}" x2="${x(lo)}" y1="${y - 6}" y2="${y + 6}" stroke="${C.grey}" stroke-width="2"/><line x1="${x(hi)}" x2="${x(hi)}" y1="${y - 6}" y2="${y + 6}" stroke="${C.grey}" stroke-width="2"/>`;
+    }
+    o += `<circle cx="${x(s)}" cy="${y}" r="7.5" fill="${r.gradeCShare > 1 / 3 ? C.orange : C.teal}"/>`;
+    o += t(width, y + 5, hi > lo ? `${s} (${lo}–${hi})` : `${s}`, { 'font-size': 12, 'text-anchor': 'end', 'font-weight': 900, fill: C.ink });
+  });
+  return svg(width, H + 20, o);
+}
+
+/** Mention rate per engine with 95% interval whiskers. rows: {engine, rate, lo, hi, mentions, answers} */
+export function ciChart(rows, { width = 680 } = {}) {
+  const L = 150, R = width - 120, x = (v) => L + ((R - L) * v) / 100, top = 18, rh = 36;
+  const H = top + rows.length * rh;
+  let o = '';
+  [0, 25, 50, 75, 100].forEach((v) => {
+    o += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 6}" y2="${H}" stroke="${C.line}"/>`;
+    o += t(x(v), H + 14, `${v}%`, { 'font-size': 9, fill: C.grey, 'text-anchor': 'middle' });
+  });
+  rows.forEach((r, i) => {
+    const y = top + i * rh + rh / 2 - 4, pooled = /all engines/i.test(r.engine);
+    o += t(0, y + 4, r.engine, { 'font-size': 12, 'font-weight': pooled ? 900 : 800, fill: C.ink });
+    o += `<line x1="${x(r.lo)}" x2="${x(r.hi)}" y1="${y}" y2="${y}" stroke="${pooled ? C.navy : C.teal}" stroke-width="6" stroke-linecap="round" opacity=".35"/>`;
+    o += `<circle cx="${x(r.rate)}" cy="${y}" r="7" fill="${pooled ? C.navy : C.teal}"/>`;
+    o += t(width, y + 4, `${r.rate}% (${r.lo}–${r.hi})`, { 'font-size': 12, 'text-anchor': 'end', 'font-weight': 900, fill: C.ink });
+    o += t(width, y + 16, `${r.mentions} of ${r.answers} answers`, { 'font-size': 9, 'text-anchor': 'end', fill: C.grey });
+  });
+  return svg(width, H + 22, o);
+}
+
+/** Checks met per discipline as stacked bars. rows: {k, met, partial, notmet, unverifiable, total} */
+export function disciplineBars(rows, { width = 680 } = {}) {
+  const L = 60, R = width - 110, top = 4, rh = 34;
+  const max = Math.max(...rows.map((r) => r.total));
+  const x = (v) => ((R - L) * v) / max;
+  const parts = [['met', C.green], ['partial', C.orange], ['notmet', C.red], ['unverifiable', C.purple]];
+  let o = '';
+  rows.forEach((r, i) => {
+    const y = top + i * rh;
+    o += t(0, y + 15, r.k, { 'font-size': 14, 'font-weight': 900, fill: C.ink });
+    let at = L;
+    parts.forEach(([k, col]) => {
+      if (!r[k]) return;
+      o += `<rect x="${at}" y="${y + 2}" width="${x(r[k]) - 2}" height="18" rx="3" fill="${col}"/>`;
+      at += x(r[k]);
+    });
+    o += t(width, y + 16, `${r.met} of ${r.total - r.unverifiable} met`, { 'font-size': 11.5, 'text-anchor': 'end', 'font-weight': 800, fill: C.ink });
+  });
+  return svg(width, top + rows.length * rh, o);
 }

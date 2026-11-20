@@ -10,180 +10,4216 @@
     "pagesRead": 34,
     "pagesChecked": 12,
     "sitemapUrls": 41,
-    "preparedBy": "The NoW of Work"
+    "preparedBy": "The NoW of Work",
+    "modelVersion": "7.0"
   },
   "summary": {
-    "headline": "Strong pages, *a weak signal off the site.* AI tools can read you; few of them name you.",
-    "lede": "A fictional sample. The site is well built and well written, but other sites rarely mention it, and that is what AI assistants lean on.",
-    "summaryHeadline": "Built well, *talked about rarely.*",
+    "headline": "Built well, *talked about rarely.* AI tools can likely read the site; few of them name it.",
+    "lede": "A fictional sample. The site is well built and well written. Few other sites seem to mention it (a mention tracker would confirm), and in large studies mentions track AI visibility closely.",
+    "summaryHeadline": "Ready on the site, *quiet off it.*",
     "paragraphs": [
-      "Harbour & Pine scores **61 out of 100**, in the Needs Work band. The technical base is solid: every page loads in raw HTML, Bing and Google both index the site, and no AI search bot is blocked.",
-      "The most urgent issue is the **stale Brave index**, which still shows the 2024 team page. Claude reads Brave, so Claude describes a firm that no longer exists.",
-      "The biggest opportunity is the firm's own data: 140 client engagements with before-and-after numbers that never appear on the site."
+      "Harbour & Pine passes three of six access checks; three (Cloudflare edge settings, indexing in Search Console and Bing, and the Search Console AI setting) need a login to confirm. Its **AI Search Readiness Index is in the Needs Work band**, held back most by off-site presence, the pillar weighted most.",
+      "The most urgent fix is the **stale index**: Brave and Bing still show the 2024 team page. Brave is one of Claude's search sources, so Claude can repeat the old team.",
+      "Across 20 buyer questions run once a day for 8 days on three AI tools, the firm was named in 8% to 14% of answers depending on the engine, mostly on local searches. The biggest opportunity is its own data: results from 140 engagements that never appear on the site."
     ],
     "topFixes": [
-      "Redirect the five retired /team/* URLs and request a Brave recrawl.",
-      "Add a 40–60 word answer under the H1 of each of the six service pages.",
-      "Publish the engagement data as a research page with method and sample size."
+      "Redirect the five retired /team/* URLs so Brave and Bing drop them (TD1, TD5).",
+      "Open each service page with a plain answer to its main question (BQ2, BQ9).",
+      "Publish the engagement results as a research page with method and sample size (BQ4), and pitch it (OS5)."
     ],
-    "strength": "Every service page names a real client and a measured result, which is rare for the category.",
-    "topContent": ["“What does a fractional CFO cost?” guide", "Industry page for dental practices", "Annual client results report"]
+    "strength": "Five of six service pages name a real client and a measured result, which is rare for the category.",
+    "topContent": [
+      "“What does a fractional CFO cost?” guide",
+      "Industry page for dental practices",
+      "Annual client results report"
+    ]
   },
   "score": {
-    "total": 61,
-    "takeaway": "Solid base; held back by off-site signals and thin answers.",
-    "headline": "The base is solid. *Off-page is the drag.*",
-    "lede": "Off-Page Consensus carries a quarter of the score and sits in the Critical band.",
-    "pillars": {
-      "tc": { "score": 84, "finding": "Raw HTML parity, clean status codes, indexed in Bing and Google; Brave shows retired pages." },
-      "cd": { "score": 63, "finding": "Named results on service pages; no original data, few cited statistics." },
-      "oa": { "score": 38, "finding": "One review platform, no Wikidata entry, two press mentions in three years." },
-      "se": { "score": 70, "finding": "Organization and Service schema present; no FAQPage, no sameAs beyond LinkedIn." },
-      "pm": { "score": 55, "finding": "Mobile LCP estimated near 2.6s from page weight.", "pending": true }
-    },
-    "seo": { "score": 7, "takeaway": "Clean technical foundation; titles and internal links need work." },
-    "geo": { "score": 4, "takeaway": "AI tools rarely name the firm; few outside mentions to draw on." },
-    "aeo": { "score": 5, "takeaway": "Service pages open with slogans, not answers." }
+    "headline": "The site is ready. *Off-site presence is the drag.*",
+    "lede": "Off-site presence carries the most weight and scores lowest. Mention volume needs a tracking tool to confirm, which is why the score has a range.",
+    "takeaway": "Solid site; held back by how rarely other sites mention the firm.",
+    "gates": [
+      {
+        "id": "G1",
+        "result": "pass",
+        "evidence": "robots.txt allows Googlebot and Bingbot; all 12 key pages return 200 with no noindex. The site is on Cloudflare, but the owner confirmed Training is set to Disallow AI Training, not Block.",
+        "grade": "B"
+      },
+      {
+        "id": "G2",
+        "result": "verify",
+        "evidence": "robots.txt allows OAI-SearchBot, Claude-SearchBot and PerplexityBot. The site is on Cloudflare (cf-ray header), so edge blocking cannot be seen from outside.",
+        "tool": "Cloudflare dashboard, AI Crawl Control"
+      },
+      {
+        "id": "G3",
+        "result": "pass",
+        "evidence": "Body copy, links and JSON-LD are present in the raw HTML before JavaScript runs.",
+        "grade": "B"
+      },
+      {
+        "id": "G4",
+        "result": "verify",
+        "evidence": "A site: search returns 11 of the 12 key pages (grade C proxy); no Search Console or Bing Webmaster Tools data was shared.",
+        "tool": "Search Console URL Inspection and Bing Webmaster Tools"
+      },
+      {
+        "id": "G5",
+        "result": "verify",
+        "evidence": "No Search Console access, so the generative AI setting can’t be read.",
+        "tool": "Search Console, Settings"
+      },
+      {
+        "id": "G6",
+        "result": "pass",
+        "evidence": "No pattern from Google's spam policies found (no near-duplicate city or industry pages, no hidden text or links, no sneaky redirects).",
+        "grade": "B"
+      }
+    ],
+    "checks": [
+      {
+        "id": "OS1",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Name, address and phone match across site, schema, Google and LinkedIn."
+      },
+      {
+        "id": "OS2",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "sameAs lists LinkedIn only; Clutch and YouTube profiles exist but aren’t linked."
+      },
+      {
+        "id": "OS3",
+        "result": "notmet",
+        "grade": "B",
+        "evidence": "No Wikidata item; no knowledge panel for a brand search."
+      },
+      {
+        "id": "OS4",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "Google profile with 11 reviews (latest Sept 2026); no Clutch profile, which the panel shows is cited for this category."
+      },
+      {
+        "id": "OS5",
+        "result": "unverifiable",
+        "evidence": "Manual search found two editorial mentions in three years; no mention-tracking tool was run, so volume against competitors is unknown.",
+        "tool": "Ahrefs Brand Radar or another mention tracker"
+      },
+      {
+        "id": "OS6",
+        "result": "notmet",
+        "grade": "B",
+        "evidence": "No third-party videos naming the firm found on YouTube for buyer topics; no own channel either."
+      },
+      {
+        "id": "OS7",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "Mentioned on 1 of the 6 non-review domains the panel shows are cited for this category."
+      },
+      {
+        "id": "OS8",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Brand search shows the site, LinkedIn and Google profile first."
+      },
+      {
+        "id": "OS9",
+        "result": "partial",
+        "evidence": "Google Business Profile and Bing Places claimed with matching facts; no Apple Business Connect listing. Completeness of each needs owner access.",
+        "tool": "Google Business Profile manager",
+        "grade": "B"
+      },
+      {
+        "id": "BQ1",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "7 of the 14 prompts not taken from the site have a page that answers them."
+      },
+      {
+        "id": "BQ2",
+        "result": "notmet",
+        "grade": "B",
+        "evidence": "0 of 6 service pages answer their main question in the opening lines."
+      },
+      {
+        "id": "BQ3",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "Insights articles use question headings; service pages don’t."
+      },
+      {
+        "id": "BQ4",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "Named client results on five service pages; no published research."
+      },
+      {
+        "id": "BQ5",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "Four sourced statistics across the site."
+      },
+      {
+        "id": "BQ6",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Both partners have bylined bios with CPA credentials."
+      },
+      {
+        "id": "BQ7",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Wayback Machine snapshots of four articles show the updated dates match real edits."
+      },
+      {
+        "id": "BQ8",
+        "result": "notmet",
+        "grade": "B",
+        "evidence": "No pricing page content beyond \"contact us\"; no comparison content."
+      },
+      {
+        "id": "BQ9",
+        "result": "partial",
+        "grade": "C",
+        "evidence": "Service pages lead with slogans; detail sits lower on the page."
+      },
+      {
+        "id": "BQ10",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Case studies are in the sitemap and linked from the menu; client logos have alt text."
+      },
+      {
+        "id": "TD1",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "Key pages return 200; five retired /team/* URLs that still have inbound links return 404."
+      },
+      {
+        "id": "TD2",
+        "result": "met",
+        "grade": "B",
+        "evidence": "One host; canonicals self-reference."
+      },
+      {
+        "id": "TD3",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Sitemap lists all key pages and is referenced in robots.txt."
+      },
+      {
+        "id": "TD4",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Every key page is within three clicks of home."
+      },
+      {
+        "id": "TD5",
+        "result": "notmet",
+        "grade": "B",
+        "evidence": "Brave results show the 2024 /team page and two retired services."
+      },
+      {
+        "id": "TD6",
+        "result": "partial",
+        "grade": "B",
+        "evidence": "9 titles over 60 characters; 4 start with the brand name."
+      },
+      {
+        "id": "TD7",
+        "result": "met",
+        "grade": "B",
+        "evidence": "One H1 per page on all 34 pages."
+      },
+      {
+        "id": "TD8",
+        "result": "na",
+        "evidence": "Not applicable until G4 is confirmed."
+      },
+      {
+        "id": "TD9",
+        "result": "na",
+        "evidence": "English only."
+      },
+      {
+        "id": "TD10",
+        "result": "met",
+        "grade": "B",
+        "evidence": "GPTBot and CCBot blocked deliberately (robots.txt comment); ChatGPT-User and Claude-User allowed."
+      },
+      {
+        "id": "SD1",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Organization markup validates; name, address and phone match the site."
+      },
+      {
+        "id": "SD2",
+        "result": "met",
+        "grade": "B",
+        "evidence": "Article markup with author and dates; Service markup on service pages."
+      },
+      {
+        "id": "SD3",
+        "result": "met",
+        "grade": "B",
+        "evidence": "No validation errors in Rich Results Test."
+      },
+      {
+        "id": "SD4",
+        "result": "met",
+        "grade": "B",
+        "evidence": "No FAQ or HowTo markup relied on."
+      },
+      {
+        "id": "SD5",
+        "result": "notmet",
+        "grade": "B",
+        "evidence": "No WebSite or BreadcrumbList markup."
+      },
+      {
+        "id": "PX1",
+        "result": "unverifiable",
+        "evidence": "Not measured.",
+        "tool": "PageSpeed Insights (mobile)"
+      },
+      {
+        "id": "PX2",
+        "result": "unverifiable",
+        "evidence": "Not measured.",
+        "tool": "PageSpeed Insights or CrUX"
+      },
+      {
+        "id": "PX3",
+        "result": "unverifiable",
+        "evidence": "Not measured.",
+        "tool": "PageSpeed Insights (mobile)"
+      }
+    ]
   },
   "pages": [
-    { "url": "/", "type": "Home", "notes": "H1 is a slogan; strong client logos with alt text." },
-    { "url": "/services/fractional-cfo", "type": "Service", "notes": "Named client result; no FAQ." },
-    { "url": "/insights/cash-flow-forecasting", "type": "Article", "notes": "Dated 2023; cites two sources." }
+    {
+      "url": "/",
+      "type": "Home",
+      "notes": "H1 is a slogan; strong client logos with alt text."
+    },
+    {
+      "url": "/services/fractional-cfo",
+      "type": "Service",
+      "notes": "Named client result."
+    },
+    {
+      "url": "/insights/cash-flow-forecasting",
+      "type": "Article",
+      "notes": "Dated 2023; cites two sources."
+    }
   ],
-  "seo": {
-    "headline": "Readable, indexed, *and mostly tidy.*",
-    "lede": "Search engines can read every page. The gaps are in titles, internal links and one stale index.",
-    "sections": [
-      { "title": "Crawlability and rendering", "signals": [
-        { "signal": "Raw vs rendered HTML", "finding": "Body copy, links and JSON-LD all present before JavaScript runs.", "status": "good" },
-        { "signal": "Status codes", "finding": "34 of 34 pages return 200; five legacy URLs return 404.", "status": "needs" }
-      ]},
-      { "title": "Indexation", "signals": [
-        { "signal": "Bing", "finding": "DuckDuckGo returns 20+ current pages.", "status": "good" },
-        { "signal": "Brave", "finding": "Shows the 2024 /team page and two retired services.", "status": "missing" },
-        { "signal": "Bing Webmaster Tools", "finding": "No verification tag found; may be verified by DNS.", "status": "verify" }
-      ]},
-      { "title": "On-page", "signals": [
-        { "signal": "Title tags", "finding": "9 titles over 60 characters; 4 start with the brand name.", "status": "needs" },
-        { "signal": "H1s", "finding": "One H1 per page on all 34 pages.", "status": "good" }
-      ]}
-    ]
-  },
-  "aeo": {
-    "headline": "Good answers, *buried.*",
-    "sections": [ { "title": "Answer-first formatting", "signals": [
-      { "signal": "Answer capsules", "finding": "0 of 6 service pages answer the core question in the first 60 words.", "status": "missing" },
-      { "signal": "Question headings", "finding": "Insights articles use question H2s; service pages don't.", "status": "needs" },
-      { "signal": "FAQ markup", "finding": "No FAQPage anywhere.", "status": "missing" }
-    ]}]
-  },
-  "geo": {
-    "headline": "Real proof, *no outside echo.*",
-    "sections": [ { "title": "Content for AI citation", "signals": [
-      { "signal": "Statistics with sources", "finding": "4 across the site.", "status": "needs" },
-      { "signal": "Original data", "finding": "None published, though 140 engagements are tracked internally.", "status": "missing" },
-      { "signal": "Named experts", "finding": "Both partners have bios with credentials.", "status": "good" }
-    ]}, { "title": "Off-page consensus", "signals": [
-      { "signal": "Review platforms", "finding": "Google Business Profile only, 11 reviews.", "status": "needs" },
-      { "signal": "Wikidata", "finding": "No entry.", "status": "missing" }
-    ]}],
-    "callout": "**Lower-authority sites can win here.** Pages with original statistics and cited sources earn AI citations without a big link profile."
-  },
   "crawlers": [
-    { "bot": "OAI-SearchBot", "engine": "ChatGPT search", "purpose": "Search-time", "verdict": "Allowed" },
-    { "bot": "Claude-SearchBot", "engine": "Claude", "purpose": "Search-time", "verdict": "Allowed" },
-    { "bot": "GPTBot", "engine": "OpenAI", "purpose": "Training", "verdict": "Blocked" }
+    {
+      "bot": "Googlebot",
+      "engine": "Google",
+      "purpose": "Google Search, AI Overviews and AI Mode",
+      "verdict": "Allowed"
+    },
+    {
+      "bot": "Bingbot",
+      "engine": "Microsoft",
+      "purpose": "Bing, Copilot and one of ChatGPT’s sources",
+      "verdict": "Allowed"
+    },
+    {
+      "bot": "OAI-SearchBot",
+      "engine": "OpenAI",
+      "purpose": "Removes the site from ChatGPT search answers",
+      "verdict": "Allowed"
+    },
+    {
+      "bot": "GPTBot",
+      "engine": "OpenAI",
+      "purpose": "Training only",
+      "verdict": "Blocked"
+    },
+    {
+      "bot": "Claude-SearchBot",
+      "engine": "Anthropic",
+      "purpose": "Reduces visibility in Claude’s search answers",
+      "verdict": "Allowed"
+    },
+    {
+      "bot": "PerplexityBot",
+      "engine": "Perplexity",
+      "purpose": "Removes the site from Perplexity’s index",
+      "verdict": "Allowed"
+    }
   ],
-  "citation": {
-    "summary": "**Named in 1 of 3 buyer prompts.** The one hit was a local search. National CFO firms and reference sites own the rest. (A full audit tests 8 to 12 prompts.)",
-    "prompts": [
-      { "prompt": "best fractional CFO in Victoria BC", "present": true, "instead": "–", "sources": "Google Business Profile, Clutch" },
-      { "prompt": "how much does a fractional CFO cost", "present": false, "instead": "Pilot, Bench", "sources": "Forbes, Reddit" },
-      { "prompt": "fractional CFO vs controller", "present": false, "instead": "Investopedia", "sources": "Investopedia, Quora" }
-    ]
-  },
   "fixes": [
-    { "priority": "critical", "fix": "Redirect retired /team/* URLs and recrawl Brave", "module": "Technical", "effort": "2 hours", "hours": 2, "impact": "Claude stops describing the old team." },
-    { "priority": "quick", "fix": "Answer-first openings on six service pages", "module": "AEO", "effort": "1 day", "hours": 8, "impact": "Eligible for snippets and AI answer lifts." },
-    { "priority": "high", "fix": "Publish the engagement results as research", "module": "GEO", "effort": "3 days", "hours": 24, "impact": "The strongest citation asset the firm can make." },
-    { "priority": "future", "fix": "GA4 AI referrals channel", "module": "Measurement", "effort": "1 hour", "hours": 1, "impact": "Shows which AI tools send visits." }
+    {
+      "priority": "quick",
+      "fix": "Redirect retired /team/* URLs",
+      "checks": "TD1, TD5",
+      "effort": "2 hours",
+      "hours": 2,
+      "impact": "Brave and Bing drop the old team pages, so AI answers built on them stop repeating the old team."
+    },
+    {
+      "priority": "quick",
+      "fix": "Plain answers at the top of six service pages",
+      "checks": "BQ2, BQ9",
+      "effort": "1 day",
+      "hours": 8,
+      "impact": "Each page states what it is, for whom and at what scope in its opening lines."
+    },
+    {
+      "priority": "high",
+      "fix": "Publish the engagement results as research",
+      "checks": "BQ4, OS5",
+      "effort": "3 days",
+      "hours": 24,
+      "impact": "First-hand data no one else has, and a reason for others to mention the firm."
+    },
+    {
+      "priority": "high",
+      "fix": "Claim Clutch and link all profiles in sameAs",
+      "checks": "OS2, OS4",
+      "effort": "3 hours",
+      "hours": 3,
+      "impact": "Present on a platform this category’s answers cite."
+    },
+    {
+      "priority": "future",
+      "fix": "Run PageSpeed Insights and confirm Cloudflare and Search Console settings",
+      "checks": "G2, G4, G5, PX1–3",
+      "effort": "1 hour",
+      "hours": 1,
+      "impact": "Confirms three access checks and lets page speed count in the score."
+    }
   ],
   "working": [
-    { "what": "Named client results", "evidence": "Five of six service pages name a client and a number." },
-    { "what": "Clean rendering", "evidence": "Every page readable without JavaScript." }
+    {
+      "what": "Named client results",
+      "evidence": "Five of six service pages name a client and a number."
+    },
+    {
+      "what": "Clean rendering",
+      "evidence": "Every page readable without JavaScript."
+    }
   ],
   "content": {
     "overview": "Stop writing generic finance tips. Start publishing what only this firm knows: its own engagement results and costs.",
     "inventory": [
-      { "url": "/services/fractional-cfo", "type": "Service", "verdict": "Keep", "action": "Add answer capsule and FAQ." },
-      { "url": "/insights/cash-flow-forecasting", "type": "Article", "verdict": "Refresh", "action": "Update to 2026 data, add sources." },
-      { "url": "/insights/5-tips-budgeting", "type": "Article", "verdict": "Prune", "action": "Thin and generic; 301 to the forecasting guide." },
-      { "url": "/services/controller", "type": "Service", "verdict": "Merge", "action": "Fold into the CFO page as a comparison." }
+      {
+        "url": "/services/fractional-cfo",
+        "type": "Service",
+        "verdict": "Keep",
+        "action": "Add a plain answer to the cost question at the top."
+      },
+      {
+        "url": "/insights/cash-flow-forecasting",
+        "type": "Article",
+        "verdict": "Refresh",
+        "action": "Update to 2026 data, add sources."
+      },
+      {
+        "url": "/insights/5-tips-budgeting",
+        "type": "Article",
+        "verdict": "Prune",
+        "action": "Thin and generic; 301 to the forecasting guide."
+      },
+      {
+        "url": "/services/controller",
+        "type": "Service",
+        "verdict": "Merge",
+        "action": "Fold into the CFO page as a comparison."
+      }
     ],
     "funnel": [
-      { "stage": "Awareness", "covered": "Partly", "gap": "No cost guide; buyers ask about price first." },
-      { "stage": "Decision", "covered": "No", "gap": "No comparison page (fractional vs full-time vs firm)." }
+      {
+        "stage": "Awareness",
+        "covered": "Partly",
+        "gap": "No cost guide; buyers ask about price first."
+      },
+      {
+        "stage": "Decision",
+        "covered": "No",
+        "gap": "No comparison page (fractional vs full-time vs firm)."
+      }
     ],
-    "types": [ { "type": "Original research", "present": "No", "note": "The biggest single gap." } ],
+    "types": [
+      {
+        "type": "Original research",
+        "present": "No",
+        "note": "The biggest single gap."
+      }
+    ],
     "roadmap": {
-      "now": [ { "piece": "Fractional CFO cost guide", "type": "Guide", "stage": "Awareness", "levers": "Price table, FAQPage, sourced ranges", "effort": "2 days", "impact": "High" } ],
-      "next": [ { "piece": "Client results report 2026", "type": "Research", "stage": "Consideration", "levers": "Original data, method, quotes", "effort": "5 days", "impact": "High" } ],
-      "later": [ { "piece": "Dental practices industry page", "type": "Industry", "stage": "Decision", "levers": "Named clients, local schema", "effort": "1 day", "impact": "Medium" } ]
+      "now": [
+        {
+          "piece": "Fractional CFO cost guide",
+          "type": "Guide",
+          "stage": "Awareness",
+          "levers": "Answers the most-asked pricing question, which has no page today",
+          "effort": "2 days",
+          "impact": "High",
+          "checks": "BQ1, BQ8",
+          "evidence": "High"
+        }
+      ],
+      "next": [
+        {
+          "piece": "Client results report 2026",
+          "type": "Research",
+          "stage": "Consideration",
+          "levers": "Original data no one else has; gives press a reason to cite",
+          "effort": "5 days",
+          "impact": "High",
+          "checks": "BQ4, OS5",
+          "evidence": "High"
+        }
+      ],
+      "later": [
+        {
+          "piece": "Dental practices industry page",
+          "type": "Industry",
+          "stage": "Decision",
+          "levers": "Named dental clients; passes the doorway test",
+          "effort": "1 day",
+          "impact": "Medium",
+          "checks": "BQ1",
+          "evidence": "Medium"
+        }
+      ]
     },
     "evidence": {
       "headline": "Twelve named clients. *No industry page uses them.*",
       "intro": "Dental and veterinary practices hold the most specific proof.",
       "clusters": [
-        { "vertical": "Dental practices", "clients": ["Cook St Dental", "Oak Bay Smiles", "Shelbourne Dental", "Harbour Ortho"], "page": "/industries/dental", "first": true },
-        { "vertical": "Veterinary", "clients": ["Saanich Vet", "Island Animal Hospital", "Fernwood Vet"], "page": "/industries/veterinary", "first": true },
-        { "vertical": "Hospitality", "clients": ["Inner Harbour Hotel"], "page": "Case study" }
+        {
+          "vertical": "Dental practices",
+          "clients": [
+            "Cook St Dental",
+            "Oak Bay Smiles",
+            "Shelbourne Dental",
+            "Harbour Ortho"
+          ],
+          "page": "/industries/dental",
+          "first": true
+        },
+        {
+          "vertical": "Veterinary",
+          "clients": [
+            "Saanich Vet",
+            "Island Animal Hospital",
+            "Fernwood Vet"
+          ],
+          "page": "/industries/veterinary",
+          "first": true
+        },
+        {
+          "vertical": "Hospitality",
+          "clients": [
+            "Inner Harbour Hotel"
+          ],
+          "page": "Case study"
+        }
       ],
-      "guardrail": "**Confirm consent before naming anyone.** A logo is consent to display it, not to publish a story or a number."
+      "guardrail": "**Confirm consent before naming anyone, and check the doorway test:** each industry page needs at least two pieces of evidence specific to that industry and must be worth reading without search."
     },
     "specs": [
-      { "title": "Fractional CFO cost guide", "h1": "What a fractional CFO costs in 2026", "question": "How much does a fractional CFO cost?", "answer": "Most small firms pay $3,000 to $9,000 a month, depending on hours and scope.", "structure": "Price table by company size, what's included, when it's worth it.", "evidence": "Ranges from 140 engagements; one client quote.", "schema": "Article + FAQPage", "slug": "/guides/fractional-cfo-cost" }
+      {
+        "title": "Fractional CFO cost guide",
+        "h1": "What a fractional CFO costs in 2026",
+        "question": "How much does a fractional CFO cost?",
+        "answer": "Most small firms pay $3,000 to $9,000 a month, depending on hours and scope.",
+        "structure": "Price table by company size, what's included, when it's worth it.",
+        "evidence": "Ranges from 140 engagements; one client quote.",
+        "schema": "Article",
+        "slug": "/guides/fractional-cfo-cost"
+      }
     ],
     "guardrails": {
-      "production": ["AI drafts the scaffold; a partner adds the data and the judgment.", "Every statistic links to its source."],
-      "architecture": ["Service pages link to their guide and industry pages.", "No page more than three clicks from home."],
-      "measurement": ["GA4 AI referrals channel.", "Monthly re-run of the eight buyer prompts."]
+      "production": [
+        "AI drafts the scaffold; a partner adds the data and the judgment.",
+        "Every statistic links to its source."
+      ],
+      "architecture": [
+        "Service pages link to their guide and industry pages.",
+        "No page more than three clicks from home."
+      ],
+      "measurement": [
+        "GA4 custom AI channel (a floor, not a total).",
+        "Re-run the same 20-prompt panel monthly."
+      ]
     }
   },
   "offsite": {
-    "overview": "Off-Page Consensus is the lowest pillar at 38. The firm is respected locally and almost invisible online.",
+    "overview": "Off-site presence is the lowest pillar. The visibility panel shows which sites this category’s answers cite; the plays target those.",
     "plays": [
-      { "name": "1. Index hygiene", "sub": "Redirects, Brave recrawl", "effort": "low", "start": 0, "end": 1, "marker": { "week": 4.3, "label": "re-check Brave" }, "why": "Brave shows retired pages.", "firstStep": "Redirect /team/*.", "steps": ["Redirect the five retired URLs.", "Submit the sitemap to Brave."], "evidence": "Claude retrieves from Brave." },
-      { "name": "2. Review platforms", "sub": "Google, Clutch", "effort": "low", "start": 0, "end": 4.3, "why": "11 reviews on one platform.", "firstStep": "Claim Clutch.", "steps": ["Claim Clutch.", "Add a review ask at engagement close."] },
-      { "name": "3. Digital PR", "sub": "Results report, 20 outlets", "effort": "high", "start": 0, "end": 26, "note": "", "why": "Two mentions in three years.", "firstStep": "Build a 20-name media list.", "steps": ["Publish the results report.", "Pitch BC business press."], "expectation": "Zero to three mentions a month in the first quarter." },
-      { "name": "4. Community answers", "sub": "Reddit, 2 a week", "effort": "low", "start": 4.3, "end": 26, "ongoing": true, "why": "Reddit shows in 3 of 8 answers.", "firstStep": "Answer two r/smallbusiness CFO threads." }
+      {
+        "name": "1. Index hygiene",
+        "sub": "Redirects, Bing, IndexNow",
+        "effort": "low",
+        "start": 0,
+        "end": 1,
+        "marker": {
+          "week": 4.3,
+          "label": "re-check Brave"
+        },
+        "why": "Brave shows retired pages.",
+        "firstStep": "Redirect /team/*.",
+        "steps": [
+          "Redirect the five retired URLs to their current pages.",
+          "Confirm Bing Webmaster Tools and turn on IndexNow.",
+          "Re-check Brave and Bing results in 30 days (Brave has no submission tool; it re-crawls)."
+        ],
+        "evidence": "Claude’s web search uses Brave (Anthropic subprocessor list, 2025)."
+      },
+      {
+        "name": "2. Review platforms",
+        "sub": "Google, Clutch",
+        "effort": "low",
+        "start": 0,
+        "end": 4.3,
+        "why": "11 reviews on one platform.",
+        "firstStep": "Claim Clutch.",
+        "steps": [
+          "Claim Clutch.",
+          "Add a review ask at engagement close."
+        ]
+      },
+      {
+        "name": "3. Digital PR",
+        "sub": "Results report, 20 outlets",
+        "effort": "high",
+        "start": 0,
+        "end": 26,
+        "note": "",
+        "why": "Two mentions in three years.",
+        "firstStep": "Build a 20-name media list.",
+        "steps": [
+          "Publish the results report with method and sample size.",
+          "Pitch BC business press with one finding each."
+        ],
+        "expectation": "Expect zero to three quality mentions a month in the first quarter."
+      },
+      {
+        "name": "4. Community answers",
+        "sub": "Reddit, 2 a week",
+        "effort": "low",
+        "start": 4.3,
+        "end": 26,
+        "ongoing": true,
+        "why": "Reddit shows in 3 of 8 answers.",
+        "firstStep": "Answer two r/smallbusiness CFO threads."
+      }
     ],
     "prNote": "**Don't stop PR at week six.** Mentions compound slowly; the first quarter is the quiet part."
   },
   "plan": {
     "lede": "The fixes take about a week. The content and PR work is a few hours a week after that.",
     "d30": [
-      { "action": "Redirect retired URLs, recrawl Brave", "short": "Fix Brave index", "lane": "Technical", "done": "Brave shows the current team.", "effort": "2 hours", "impact": "High", "threshold": true },
-      { "action": "Answer-first openings on six service pages", "short": "Answer-first service pages", "lane": "Content", "done": "Each opens with a 40–60 word answer.", "effort": "1 day", "impact": "High" },
-      { "action": "Claim Clutch and add a review ask", "short": "Clutch + review ask", "lane": "Off-site", "done": "Profile live; ask in the close-out email.", "effort": "3 hours", "impact": "Medium" },
-      { "action": "Set up GA4 AI referrals channel", "short": "GA4 AI channel", "lane": "Measurement", "done": "Channel reports AI visits.", "effort": "1 hour", "impact": "Medium" }
+      {
+        "action": "Redirect retired URLs, recrawl Brave",
+        "short": "Fix Brave index",
+        "lane": "Technical",
+        "done": "Brave shows the current team.",
+        "effort": "2 hours",
+        "impact": "High",
+        "threshold": true,
+        "checks": "TD5"
+      },
+      {
+        "action": "Answer-first openings on six service pages",
+        "short": "Answer-first service pages",
+        "lane": "Content",
+        "done": "Each opens with a plain answer to its main question.",
+        "effort": "1 day",
+        "impact": "High",
+        "checks": "BQ2"
+      },
+      {
+        "action": "Claim Clutch and add a review ask",
+        "short": "Clutch + review ask",
+        "lane": "Off-site",
+        "done": "Profile live; ask in the close-out email.",
+        "effort": "3 hours",
+        "impact": "Medium",
+        "checks": "OS4"
+      },
+      {
+        "action": "Set up GA4 AI referrals channel",
+        "short": "GA4 AI channel",
+        "lane": "Measurement",
+        "done": "Channel reports AI visits.",
+        "effort": "1 hour",
+        "impact": "Medium"
+      }
     ],
     "d60": [
-      { "action": "Publish the cost guide", "short": "Cost guide", "lane": "Content", "done": "Live with FAQPage.", "effort": "2 days", "impact": "High" },
-      { "action": "Build the media list", "short": "20-name media list", "lane": "Off-site", "done": "Names, beats, last relevant story.", "effort": "4 hours", "impact": "Medium" }
+      {
+        "action": "Publish the cost guide",
+        "short": "Cost guide",
+        "lane": "Content",
+        "done": "Live, answering the cost question in the opening lines.",
+        "effort": "2 days",
+        "impact": "High",
+        "checks": "BQ8"
+      },
+      {
+        "action": "Build the media list",
+        "short": "20-name media list",
+        "lane": "Off-site",
+        "done": "Names, beats, last relevant story.",
+        "effort": "4 hours",
+        "impact": "Medium",
+        "checks": "OS5"
+      }
     ],
     "d90": [
-      { "action": "Publish and pitch the results report", "short": "Results report + pitch", "lane": "Off-site", "done": "Sent to 20 outlets.", "effort": "5 days", "impact": "High" },
-      { "action": "Re-run the buyer prompts", "short": "Prompt re-check", "lane": "Measurement", "done": "Compared to the 2 of 8 baseline.", "effort": "1 hour", "impact": "Medium" }
+      {
+        "action": "Publish and pitch the results report",
+        "short": "Results report + pitch",
+        "lane": "Off-site",
+        "done": "Sent to 20 outlets.",
+        "effort": "5 days",
+        "impact": "High",
+        "checks": "BQ4, OS5"
+      },
+      {
+        "action": "Re-run the buyer prompts",
+        "short": "Prompt re-check",
+        "lane": "Measurement",
+        "done": "Same 20-prompt panel re-run; compared with intervals.",
+        "effort": "1 hour",
+        "impact": "Medium"
+      }
     ],
-    "ongoing": [ { "n": "1 / quarter", "l": "original-data piece" }, { "n": "2 / month", "l": "new reviews" }, { "n": "Monthly", "l": "buyer-prompt re-run" }, { "n": "Quarterly", "l": "full re-audit" } ],
+    "ongoing": [
+      {
+        "n": "1 / quarter",
+        "l": "original-data piece"
+      },
+      {
+        "n": "2 / month",
+        "l": "new reviews"
+      },
+      {
+        "n": "Monthly",
+        "l": "same prompt panel re-run"
+      },
+      {
+        "n": "Quarterly",
+        "l": "full re-audit"
+      }
+    ],
     "resourcing": "**About a week of specialist work for the fixes.** The durable gains come from the data asset and PR, which take a few hours a week and pay off over two to six months."
   },
   "method": {
     "caveats": [
-      { "title": "Performance is estimated.", "text": "Run PageSpeed Insights on mobile to replace the estimate." },
-      { "title": "AI answers are a sample.", "text": "Eight prompts on one day. Treat it as a starting line." }
+      {
+        "title": "Page speed was not measured,",
+        "text": "so that pillar is left out and the other weights renormalize. It is never estimated."
+      },
+      {
+        "title": "Three access checks need a login.",
+        "text": "Cloudflare edge settings, indexing in Search Console and Bing, and the Search Console AI setting are listed under What we could not see."
+      },
+      {
+        "title": "AI answers vary from run to run and day to day.",
+        "text": "Each prompt ran once a day for 8 days on each engine, and each engine’s rate has a range that allows for that. At 20 prompts, the next check can only detect large moves."
+      }
     ],
-    "benchmarks": [ { "figure": "Brand mentions correlate with AI visibility about 3x more than backlinks", "source": "Ahrefs, 2025" } ],
-    "next": "Run the monthly progress check on or after 18 December 2026."
-  }
+    "benchmarks": [
+      {
+        "figure": "Web mentions correlate 0.664 with AI Overview visibility; backlinks 0.218 (brands with DR 40+ and at least one AIO mention)",
+        "source": "Ahrefs, 2025 (vendor)",
+        "method": "Correlation",
+        "grade": "B"
+      },
+      {
+        "figure": "Users clicked a traditional result in 8% of visits with an AI summary vs 15% without; about 1% clicked a link inside the summary",
+        "source": "Pew Research Center, Jul 2025",
+        "method": "Browsing panel",
+        "grade": "B"
+      },
+      {
+        "figure": "Optimizing for Google’s AI features is still SEO; Google Search ignores llms.txt",
+        "source": "Google Search Central, May and Jun 2026",
+        "method": "Platform documentation",
+        "grade": "A"
+      }
+    ],
+    "next": "Run the monthly progress check on or after 18 December 2026 with the same 20-prompt panel."
+  },
+  "notes": {
+    "os": {
+      "headline": "Respected locally, *nearly invisible online.*",
+      "lede": "AI answers lean on what other sites say. Few say anything about this firm yet.",
+      "callout": "**Why this pillar carries the most weight.** Two Ahrefs studies (vendor, correlational) found brand mentions tracked AI visibility far more than backlinks or page count; a separate study (Moore and Dunne, vendor authors, B2B SaaS) found domain-level factors explained far more than page features."
+    },
+    "bq": {
+      "headline": "Good proof, *buried under slogans.*"
+    },
+    "td": {
+      "headline": "Clean build, *one stale index.*"
+    },
+    "sd": {
+      "headline": "Markup is *accurate but thin.*"
+    },
+    "px": {
+      "headline": "Speed *not measured*, so not scored.",
+      "lede": "We never estimate page speed. Run PageSpeed Insights on mobile and this pillar will be scored next time."
+    }
+  },
+  "visibility": {
+    "tier": "measured",
+    "takeaway": "Named mostly on local searches; absent on pricing and comparison questions.",
+    "summary": "**Named in 8% to 14% of answers, depending on the engine.** Hits cluster on local recommendation prompts; national firms and reference sites own pricing and comparison questions, where the firm has no pages.",
+    "protocol": "20 unbranded buyer prompts (14 from outside the site), run once a day for 8 days (7–14 Nov 2026) on ChatGPT, Google AI Mode and Perplexity, logged out, Victoria BC, English. The full panel is saved in the audit file for re-checks.",
+    "panel": [
+      {
+        "prompt": "best fractional CFO in Victoria BC",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "keyword",
+        "instead": "Pilot, local CPA firms",
+        "sources": "Google profiles, Clutch",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 5,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 1,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 4,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 1
+              }
+            ],
+            "competitors": {
+              "Pilot": 3,
+              "Bench": 0,
+              "Lakeside CPA": 3
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 5,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 1
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 3,
+              "Lakeside CPA": 3
+            }
+          }
+        }
+      },
+      {
+        "prompt": "fractional CFO for a dental practice",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "sales",
+        "instead": "Dental-specialist CFO firms",
+        "sources": "Industry blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 2,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 3,
+              "Lakeside CPA": 2
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 3,
+              "Bench": 0,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 1,
+              "Lakeside CPA": 1
+            }
+          }
+        }
+      },
+      {
+        "prompt": "how much does a fractional CFO cost",
+        "intent": "Pricing",
+        "branded": false,
+        "source": "gsc",
+        "instead": "Pilot, Bench",
+        "sources": "Forbes, Reddit",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 3,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 3,
+              "Bench": 3,
+              "Lakeside CPA": 0
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 4,
+              "Lakeside CPA": 0
+            }
+          }
+        }
+      },
+      {
+        "prompt": "fractional CFO vs controller",
+        "intent": "Comparison",
+        "branded": false,
+        "source": "keyword",
+        "instead": "Investopedia",
+        "sources": "Investopedia, Quora",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 3,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 3,
+              "Bench": 1,
+              "Lakeside CPA": 0
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "signs my small business needs a CFO",
+        "intent": "Problem",
+        "branded": false,
+        "source": "community",
+        "instead": "National firms",
+        "sources": "Forbes, HBR",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 1,
+              "Lakeside CPA": 4
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 3,
+              "Bench": 3,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 2,
+              "Lakeside CPA": 0
+            }
+          }
+        }
+      },
+      {
+        "prompt": "outsourced CFO services Vancouver Island",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "keyword",
+        "instead": "Local CPA firms",
+        "sources": "Google profiles",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 3,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 3,
+              "Lakeside CPA": 2
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 2,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 0,
+              "Lakeside CPA": 3
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 2,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 4,
+              "Lakeside CPA": 0
+            }
+          }
+        }
+      },
+      {
+        "prompt": "cash flow forecasting help for a growing business",
+        "intent": "Problem",
+        "branded": false,
+        "source": "sales",
+        "instead": "Float, Pilot",
+        "sources": "Vendor blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 1,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 4,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "part-time CFO for a veterinary clinic",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "sales",
+        "instead": "Vet-specialist firms",
+        "sources": "Industry blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 1,
+              "Lakeside CPA": 0
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 3,
+              "Lakeside CPA": 3
+            }
+          }
+        }
+      },
+      {
+        "prompt": "who can help me prepare to sell my business BC",
+        "intent": "Problem",
+        "branded": false,
+        "source": "sales",
+        "instead": "Brokers, CPA firms",
+        "sources": "BDC, Reddit",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 3,
+              "Lakeside CPA": 0
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 4,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "fractional CFO pricing per month Canada",
+        "intent": "Pricing",
+        "branded": false,
+        "source": "gsc",
+        "instead": "Pilot, Bench",
+        "sources": "Reddit, Clutch",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 2,
+              "Lakeside CPA": 0
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 4,
+              "Lakeside CPA": 3
+            }
+          }
+        }
+      },
+      {
+        "prompt": "bookkeeper vs fractional CFO",
+        "intent": "Comparison",
+        "branded": false,
+        "source": "community",
+        "instead": "Bench",
+        "sources": "Reddit, Investopedia",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 3
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 1,
+              "Lakeside CPA": 0
+            }
+          }
+        }
+      },
+      {
+        "prompt": "best accounting firm for small business Victoria",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "keyword",
+        "instead": "Local CPA firms",
+        "sources": "Google profiles, Yelp",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 2,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 1
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 3,
+              "Bench": 2,
+              "Lakeside CPA": 3
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 2,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 3,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "how to choose a fractional CFO",
+        "intent": "Comparison",
+        "branded": false,
+        "source": "competitor",
+        "instead": "Pilot, Paro",
+        "sources": "Forbes, Paro",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 0,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 1,
+              "Lakeside CPA": 3
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 3,
+              "Lakeside CPA": 0
+            }
+          }
+        }
+      },
+      {
+        "prompt": "financial modelling for a funding round small business",
+        "intent": "Problem",
+        "branded": false,
+        "source": "community",
+        "instead": "Consultants",
+        "sources": "Reddit",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 1,
+              "Lakeside CPA": 1
+            }
+          }
+        }
+      },
+      {
+        "prompt": "fractional CFO for a hotel",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "site",
+        "instead": "Hospitality advisors",
+        "sources": "Industry blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 4
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 1,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 3,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "monthly management reporting service",
+        "intent": "Problem",
+        "branded": false,
+        "source": "site",
+        "instead": "Bookkeeping firms",
+        "sources": "Vendor blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 0,
+              "Lakeside CPA": 1
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 2,
+              "Lakeside CPA": 1
+            }
+          }
+        }
+      },
+      {
+        "prompt": "tax planning for a dental corporation BC",
+        "intent": "Problem",
+        "branded": false,
+        "source": "site",
+        "instead": "CPA firms",
+        "sources": "CPA blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 2,
+              "Lakeside CPA": 4
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "controller services for a growing company",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "site",
+        "instead": "Local CPA firms",
+        "sources": "Clutch",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 2,
+              "Lakeside CPA": 4
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 2,
+              "Lakeside CPA": 1
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 7,
+              "Bench": 4,
+              "Lakeside CPA": 0
+            }
+          }
+        }
+      },
+      {
+        "prompt": "exit planning advisor Victoria",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "site",
+        "instead": "Brokers",
+        "sources": "Google profiles",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 6,
+              "Bench": 3,
+              "Lakeside CPA": 3
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 5,
+              "Bench": 2,
+              "Lakeside CPA": 2
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 3,
+              "Lakeside CPA": 2
+            }
+          }
+        }
+      },
+      {
+        "prompt": "cfo services for professional practices",
+        "intent": "Recommendation",
+        "branded": false,
+        "source": "site",
+        "instead": "Practice-management firms",
+        "sources": "Industry blogs",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 6,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 1,
+              "Lakeside CPA": 1
+            }
+          },
+          "Google AI Mode": {
+            "runs": 8,
+            "mentions": 0,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 2,
+              "Lakeside CPA": 1
+            }
+          },
+          "Perplexity": {
+            "runs": 8,
+            "mentions": 1,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 0
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 0
+              }
+            ],
+            "competitors": {
+              "Pilot": 4,
+              "Bench": 3,
+              "Lakeside CPA": 3
+            }
+          }
+        }
+      },
+      {
+        "prompt": "Harbour & Pine Advisory",
+        "intent": "Branded",
+        "branded": true,
+        "source": "site",
+        "results": {
+          "ChatGPT": {
+            "runs": 8,
+            "mentions": 8,
+            "searched": 8,
+            "days": [
+              {
+                "date": "2026-11-07",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-08",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-09",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-10",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-11",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-12",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-13",
+                "runs": 1,
+                "mentions": 1
+              },
+              {
+                "date": "2026-11-14",
+                "runs": 1,
+                "mentions": 1
+              }
+            ]
+          }
+        },
+        "note": "Described correctly except for the 2024 team."
+      }
+    ],
+    "showPrompts": 6
+  },
+  "outcomes": {
+    "headline": "38 AI-referred sessions in October (floor)",
+    "items": [
+      {
+        "label": "AI referral sessions, Oct 2026 (GA4 custom channel)",
+        "value": "38"
+      },
+      {
+        "label": "Contact-form submissions from those sessions",
+        "value": "2"
+      }
+    ],
+    "note": "From the client’s GA4 custom AI channel. Monthly counts this small swing by about ±17 at random, so read the trend over two or more months."
+  },
+  "keyPages": [
+    {
+      "url": "/",
+      "role": "home"
+    },
+    {
+      "url": "/services/fractional-cfo",
+      "role": "service"
+    },
+    {
+      "url": "/services/bookkeeping",
+      "role": "service"
+    },
+    {
+      "url": "/services/controller",
+      "role": "service"
+    },
+    {
+      "url": "/services/tax-planning",
+      "role": "service"
+    },
+    {
+      "url": "/services/cash-flow",
+      "role": "service"
+    },
+    {
+      "url": "/services/exit-planning",
+      "role": "service"
+    },
+    {
+      "url": "/pricing",
+      "role": "pricing"
+    },
+    {
+      "url": "/about",
+      "role": "about"
+    },
+    {
+      "url": "/contact",
+      "role": "contact"
+    },
+    {
+      "url": "/insights/cash-flow-forecasting",
+      "role": "top-impressions"
+    },
+    {
+      "url": "/case-studies/cook-st-dental",
+      "role": "top-impressions"
+    }
+  ]
 }
