@@ -71,6 +71,10 @@ Once installed, give Claude a URL and ask:
 Claude confirms the audit depth, your business type, and whether you're a local business, then crawls the site
 and delivers the recap and the report.
 
+**Tracking progress.** For monthly re-checks against this audit, install the companion skill,
+[NoW Visibility Progress Check](https://github.com/NoW-of-Work/now-visibility-progress-check). It re-scores the
+site on the same model, compares like for like, and shows what moved beyond the noise in the same report format.
+
 ---
 
 ## Installation
@@ -99,7 +103,8 @@ git clone https://github.com/NoW-of-Work/now-search-visibility-audit.git ~/.clau
 
 On claude.ai the report lands in your downloads. In Claude Code it's saved to a `visibility-audits/` folder in
 the directory you're working in (set `AUDIT_OUT` to choose another). The audit's data file (`.json`) is saved
-next to the PDF so a later progress check can compare against it.
+next to the PDF so a later [progress check](https://github.com/NoW-of-Work/now-visibility-progress-check) can
+compare against it.
 
 ---
 
