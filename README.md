@@ -188,6 +188,8 @@ guarantee of ranking outcomes.
 
 ## Version history
 
+**7.0.1**: Report layout fixes. Long labels in tables, cards and pills wrap instead of shrinking the whole PDF; the resourcing note and next check-in box sit above their tables so they no longer spill onto a page of their own. Scoring unchanged.
+
 **7.0.0**: Evidence-based rebuild.
 - Scoring model 7.0. The single AI Visibility Score is replaced by four separate measures: access gates, an
   AI Search Readiness Index, observed AI visibility and outcomes
