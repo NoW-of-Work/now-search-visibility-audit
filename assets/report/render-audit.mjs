@@ -189,18 +189,19 @@ if (P) {
   parts.push(section(p));
   const rows = [['d30', 'First 30 days'], ['d60', 'Days 31–60'], ['d90', 'Days 61–90']].flatMap(([w, g]) => (P[w] || []).map((r) => ({ ...r, g, action: (r.threshold ? '⚑ ' : '') + r.action })));
   parts.push(section(`${head(num(), 'The full plan', 'Every action, *with what done looks like*.', null)}
-    ${table([{ h: 'Action', k: 'action', w: '28%' }, { h: 'Lane', k: 'lane', w: '11%' }, { h: 'What done looks like', k: 'done' }, { h: 'Effort', k: 'effort', w: '10%' }, { h: 'Closes', k: 'checks', w: '9%' }], rows, { groupKey: 'g' })}
-    ${P.resourcing ? callout(P.resourcing, 'teal') : ''}`));
+    ${P.resourcing ? callout(P.resourcing, 'teal') : ''}
+    ${table([{ h: 'Action', k: 'action', w: '28%' }, { h: 'Lane', k: 'lane', w: '11%' }, { h: 'What done looks like', k: 'done' }, { h: 'Effort', k: 'effort', w: '10%' }, { h: 'Closes', k: 'checks', w: '9%' }], rows, { groupKey: 'g' })}`));
 }
 
 // ---------- method ----------
 const wRows = PILLARS.map((p) => ({ p: p.name, w: `${p.weight}%`, e: R.effective[p.key] != null ? `${R.effective[p.key]}%` : p.key === 'px' ? 'dropped (not measured)' : 'range only (no checks assessed)', eq: `${ALT_WEIGHTS['equal weights'][p.key]}%`, on: `${ALT_WEIGHTS['on-site heavy'][p.key]}%`, v6: `${ALT_WEIGHTS['v6 weights'][p.key]}%` }));
 parts.push(section(`${head(num(), 'How this was scored', 'Method, limits and *the numbers behind it*.', `Scoring model ${R.modelVersion}. Every check is scored met (1), partial (0.5) or not met (0); unverifiable checks are left out of the score and widen the range. Weights are expert judgment ordered by the evidence, not fitted to outcomes, so the index is also shown under three other weightings and with each pillar left out.`)}
+  <div class="callout navy" style="margin:14px 0 6px"><b>Next check-in.</b> ${md(A.method?.next || 'Run the progress check in about 30 days; re-audit in full each quarter on the same scoring model.')}</div>
   ${table([{ h: 'Pillar', k: 'p', w: '30%' }, { h: 'Weight', k: 'w' }, { h: 'Used this audit', k: 'e' }, { h: 'Equal', k: 'eq' }, { h: 'On-site heavy', k: 'on' }, { h: 'v6', k: 'v6' }], wRows)}
   <p class="src">Index ${ptxt}${R.ifFixed && R.uncapped != null ? ` (capped; ${R.uncapped} uncapped)` : ''}; unverified range ${(R.ifFixed || idx).lo}–${(R.ifFixed || idx).hi}${(R.ifFixed || idx).jlo != null ? `; judgment range ${(R.ifFixed || idx).jlo}–${(R.ifFixed || idx).jhi}` : ''}. Under ${sens}${R.ifFixed ? ' (uncapped)' : ''}. Band: ${R.bandLabel}. Confidence: ${R.confidence}${R.reasons.length ? ` (${R.reasons.join('; ')})` : ''}. Bands are conventional cut points, not calibrated against outcomes.</p>
   ${caveats(A.method?.caveats || [])}
   ${A.method?.benchmarks?.length ? `<h3>Evidence used in this report</h3>${table([{ h: 'Figure', k: 'figure' }, { h: 'Source', k: 'source', w: '26%' }, { h: 'Method', k: 'method', w: '13%' }, { h: 'Grade', k: 'grade', w: '7%' }], A.method.benchmarks)}<p class="src">Source grades. A: platform documentation or a peer-reviewed venue. B: preprints, academic surveys, large studies with a published method (vendor studies flagged) and self-reported platform figures. C: small, single-client, opinion surveys, single press reports or undisclosed methods. Figures are as of the audit date.</p>` : ''}
-  <div class="callout navy" style="margin-top:24px"><b>Next check-in.</b> ${md(A.method?.next || 'Run the progress check in about 30 days; re-audit in full each quarter on the same scoring model.')}</div>`));
+`));
 
 parts.push(glossary());
 
