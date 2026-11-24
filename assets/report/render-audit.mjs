@@ -50,7 +50,7 @@ parts.push(cover({
   headline: A.summary.headline, lede: A.summary.lede,
   chips: [
     { k: 'Seen in AI', name: V?.tier === 'measured' ? 'measured' : 'spot-check', v: V ? (V.tier === 'measured' ? `<span style="font-size:15px;color:#fff;line-height:1.35;display:block">${V.engines.map((e) => `${shortEngine(e.engine)} ${e.rate}%`).join('<br>')}</span>` : `${proxyHits}<span> / ${proxyN}</span>`) : 'n/a', s: V ? (V.tier === 'measured' ? 'per engine; ranges inside' : 'search-proxy checks, no rate') : 'not checked' },
-    ...R.disciplines.map((d) => ({ k: d.k, name: { SEO: 'Search', AEO: 'Answers', GEO: 'AI assistants' }[d.k], v: `${d.met}<span> / ${d.total - d.unverifiable}</span>`, s: `checks met${d.unverifiable ? `, ${d.unverifiable} unverifiable` : ''}` })),
+    ...R.disciplines.map((d) => ({ k: d.k, name: { SEO: 'Search', AEO: 'Answers', GEO: 'AI assistants' }[d.k], v: `${d.met}<span> / ${d.total - d.unverifiable}</span>`, s: `checks good${d.unverifiable ? `, ${d.unverifiable} to verify` : ''}` })),
   ],
   footLeft: `Audited ${A.meta.date} · Model ${R.modelVersion} · Prepared by ${A.meta.preparedBy || 'The NoW of Work'}`,
 }));
@@ -119,12 +119,12 @@ parts.push(section(`${partDivider(1, 'Visibility audit', 'Can engines reach you,
   <h3>Access checks</h3><div class="sub">Pass or fail, not points. A failed check caps the index at 49 and leads the plan.</div>
   ${table([{ h: 'Check', k: 'l', w: '32%' }, { h: 'What we found', k: 'evidence' }, { h: 'Result', k: 'r', w: '12%', pill: (v) => Object.values(GATE_LABEL).find(([l]) => l === v)[1] }],
     R.gates.map((g) => ({ ...g, l: `${g.id} · ${g.label}`, r: GATE_LABEL[g.result][0], evidence: g.result === 'choice' ? `${g.evidence} **Cost:** ${g.cost}` : g.evidence })))}
-  <h3>AI Search Readiness Index by pillar</h3><div class="sub">Dot = score from the checks we could assess. Whisker = the range if every unverifiable check went either way. Orange dot = more than a third of the evidence is inferred.</div>
+  <h3>AI Search Readiness Index by pillar</h3><div class="sub">Dot = score from the checks we could assess. Whisker = the range if every check marked Verify went either way. Orange dot = more than a third of the evidence is inferred.</div>
   ${rangeChart(R.pillars.map((p) => ({ ...p, weight: R.effective[p.key] ?? 0 })))}
-  <p class="src">Overall ${ptxt}, ${R.bandLabel}, confidence ${R.confidence}. ${R.ifFixed ? `Capped at 49 by a failed access check; once it is fixed, unverified range ${R.ifFixed.lo}–${R.ifFixed.hi}${R.ifFixed.jlo != null ? `, judgment range ${R.ifFixed.jlo}–${R.ifFixed.jhi}` : ''}.` : `Unverified range ${idx.lo}–${idx.hi}${idx.jlo != null ? `; judgment range ${idx.jlo}–${idx.jhi} (if every partial call went the other way)` : ''}.`} Under other weightings${R.ifFixed ? ' (uncapped)' : ''}: ${sens}. Weights are expert judgment ordered by the evidence, not validated against outcomes (model ${R.modelVersion}).</p>
-  <h3>SEO, AEO and GEO checks</h3><div class="sub">Each check is tagged with the discipline it serves; some serve two. Green met · orange partial · red not met · purple unverifiable.</div>
+  <p class="src">Overall ${ptxt}, ${R.bandLabel}, confidence ${R.confidence}. ${R.ifFixed ? `Capped at 49 by a failed access check; once it is fixed, unverified range ${R.ifFixed.lo}–${R.ifFixed.hi}${R.ifFixed.jlo != null ? `, judgment range ${R.ifFixed.jlo}–${R.ifFixed.jhi}` : ''}.` : `Unverified range ${idx.lo}–${idx.hi}${idx.jlo != null ? `; judgment range ${idx.jlo}–${idx.jhi} (if every Needs attention call went the other way)` : ''}.`} Under other weightings${R.ifFixed ? ' (uncapped)' : ''}: ${sens}. Weights are expert judgment ordered by the evidence, not validated against outcomes (model ${R.modelVersion}).</p>
+  <h3>SEO, AEO and GEO checks</h3><div class="sub">Each check is tagged with the discipline it serves; some serve two. Green good · orange needs attention · red missing · purple verify (needs a login or tool).</div>
   ${disciplineBars(R.disciplines)}`));
-if (blind.length) parts.push(section(`${head(num(), 'What we could not see', `*${blind.length} things* need a login or a tool to confirm.`, 'Scored as unknown, not as a pass or a fail. Unverifiable checks widen the unverified range; access checks marked verify don’t change the score but must be confirmed; page-speed checks are left out until measured.')}
+if (blind.length) parts.push(section(`${head(num(), 'What we could not see', `*${blind.length} things* need a login or a tool to confirm.`, 'Scored as unknown, not as a pass or a fail. Checks marked Verify widen the unverified range; access checks marked verify don’t change the score but must be confirmed; page-speed checks are left out until measured.')}
   ${table([{ h: 'Item', k: 'area', w: '36%' }, { h: 'Effect', k: 'kind', w: '16%' }, { h: 'How to confirm it', k: 'detail' }], blind)}`, { flow: blind.length > 8 }));
 if (choices.length) parts.push(section(`${head(num(), 'Choices you’ve made', 'Deliberate settings, *and what they cost*.', 'These are business decisions, not faults. They don’t lower the index, but they limit where you can be found.')}
   ${table([{ h: 'Setting', k: 'l', w: '32%' }, { h: 'What it is', k: 'evidence' }, { h: 'Visibility cost', k: 'cost', w: '34%' }], choices.map((g) => ({ ...g, l: `${g.id} · ${g.label}` })))}`, { flow: true }));
@@ -182,8 +182,8 @@ const fixesNote = ranked
   ? `Ordered by impact relative to effort${R.failed.length ? ', after the access fix that has to come first' : ''}. Every low-effort item can be done in a week without writing new content.`
   : 'Each fix names the check it closes. Effort bars use a log scale.';
 parts.push(section(`${head(num(), 'Priority fixes', A.fixesHeadline || 'What to fix, *in order*.', fixesNote)}
-  ${steps(fixOrder.map((f) => ({ title: f.fix, detail: `${f.checks ? `**${f.checks}.** ` : ''}${f.impact}`, hours: f.hours ?? 4,
-    effort: ranked ? `${cap(effortBand(f))} effort · ${cap(f.impactLevel)} impact${f.effort ? ` · ${f.effort}` : ''}` : f.effort, tag: { text: PRI[f.priority][0], kind: PRI[f.priority][1] } })))}
+  ${steps(fixOrder.map((f) => ({ title: f.fix, detail: `${f.checks ? `**${f.checks}.** ` : ''}${f.impact}${ranked && f.effort ? ` *About ${f.effort}.*` : ''}`, hours: f.hours ?? 4,
+    effort: ranked ? `${cap(effortBand(f))} effort · ${cap(f.impactLevel)} impact` : f.effort, tag: { text: PRI[f.priority][0], kind: PRI[f.priority][1] } })))}
   ${A.working?.length ? `<h2>What’s working</h2>${checkList(A.working.map((w) => ({ title: w.what, text: w.evidence })), 'lime')}` : ''}`, { flow: !!O }));
 
 // ---------- Part 2: content ----------
@@ -256,7 +256,7 @@ if (P) {
 
 // ---------- method ----------
 const wRows = PILLARS.map((p) => ({ p: p.name, w: `${p.weight}%`, e: R.effective[p.key] != null ? `${R.effective[p.key]}%` : p.key === 'px' ? 'dropped (not measured)' : 'range only (no checks assessed)', eq: `${ALT_WEIGHTS['equal weights'][p.key]}%`, on: `${ALT_WEIGHTS['on-site heavy'][p.key]}%`, v6: `${ALT_WEIGHTS['v6 weights'][p.key]}%` }));
-parts.push(section(`${head(num(), 'How this was scored', 'Method, limits and *the numbers behind it*.', `Scoring model ${R.modelVersion}. Every check is scored met (1), partial (0.5) or not met (0); unverifiable checks are left out of the score and widen the range. Weights are expert judgment ordered by the evidence, not fitted to outcomes, so the index is also shown under three other weightings and with each pillar left out.`)}
+parts.push(section(`${head(num(), 'How this was scored', 'Method, limits and *the numbers behind it*.', `Scoring model ${R.modelVersion}. Checks score Good 1, Needs attention 0.5, Missing 0; Verify checks are left out and widen the range. Weights are expert judgment ordered by the evidence, not fitted to outcomes, so the index is also shown under three other weightings and with each pillar left out.`)}
   <div class="callout navy" style="margin:14px 0 6px"><b>Next check-in.</b> ${md(A.method?.next || 'Run the progress check in about 30 days; re-audit in full each quarter on the same scoring model.')}</div>
   ${table([{ h: 'Pillar', k: 'p', w: '30%' }, { h: 'Weight', k: 'w' }, { h: 'Used this audit', k: 'e' }, { h: 'Equal', k: 'eq' }, { h: 'On-site heavy', k: 'on' }, { h: 'v6', k: 'v6' }], wRows)}
   <p class="src">Index ${ptxt}${R.ifFixed && R.uncapped != null ? ` (capped; ${R.uncapped} uncapped)` : ''}; unverified range ${(R.ifFixed || idx).lo}–${(R.ifFixed || idx).hi}${(R.ifFixed || idx).jlo != null ? `; judgment range ${(R.ifFixed || idx).jlo}–${(R.ifFixed || idx).jhi}` : ''}. Under ${sens}${R.ifFixed ? ' (uncapped)' : ''}. Band: ${R.bandLabel}. Confidence: ${R.confidence}${R.reasons.length ? ` (${R.reasons.join('; ')})` : ''}. Bands are conventional cut points, not calibrated against outcomes.</p>

@@ -18,7 +18,7 @@ compatibility: >
   curl, pdftoppm and pdftotext improves accuracy and render checks but is optional.
 metadata:
   author: The NoW of Work
-  version: 7.2.0
+  version: 7.2.1
 ---
 
 # NoW Search Visibility Audit & Growth Roadmap: SEO · GEO · AEO
