@@ -180,6 +180,15 @@ lower bound.
   failed gate's.
 - `hours` drives the effort bar (log scale); use 0 for ongoing work.
 - `fixesHeadline` (top level, optional): the Priority fixes page headline.
+- `owner` and `status` (optional, on any fix or plan row): who does it, and `todo` (default), `started` or
+  `done`. They print on the action list; a **Who** column appears only when at least one action has an owner.
+- `actionsHeadline` (top level, optional): the action list page headline.
+
+**The action list** (page 3, right after the executive summary) is built for you, never written by hand. Every
+fix appears once, merged with the 30/60/90 plan row that closes the same check IDs (or, failing that, says the
+same thing), and takes that row's window, short action name and "done" line. Plan rows no fix covers are added
+as "From the plan". Fixes with no plan row go in by priority: critical and quick in the first 30 days, high in
+days 31–60, future in days 61–90. Write plan rows that name the same check IDs as their fix so they merge.
 
 ### `working`
 `[{what, evidence}]`. Real strengths with the evidence seen.
@@ -262,7 +271,7 @@ no "short of the next band" note; with no point estimate the cover shows no judg
 shows the range only, with no point on it; the Seen-in-AI chip
 shows each engine's rate, e.g. "ChatGPT 14 · AI Mode 8 · Perplexity 11 %", with "per engine; ranges inside";
 checks met for SEO / AEO / GEO) · **Start here: SEO, AEO and GEO explained**, with what each means for the business
-(fixed text, every report) · executive summary (the four measures side by side) · Part 1: access gates, the index
+(fixed text, every report) · executive summary (the four measures side by side) · **your action list** · Part 1: access gates, the index
 by pillar in the order Off-site, Technical, Buyer questions, Structured data, Page experience, with the unverified
 range and the judgment range (a non-speed pillar with no assessed checks is labelled "range only", never
 "dropped") · checks met per discipline · **What we could not see** · **Choices you've made** (any `choice` gate,

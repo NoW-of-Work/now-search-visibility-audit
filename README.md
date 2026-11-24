@@ -129,7 +129,7 @@ The four measures are kept apart, because blending them would hide what's known:
 
 SEO, AEO and GEO are shown as checks met, not as scores out of 10, so each word maps to concrete work.
 
-**Part 1, Visibility Audit:** executive summary, access checks, the index by pillar, choices you've made, what
+**Part 1, Visibility Audit:** executive summary, your action list (every fix and plan step on one checklist), access checks, the index by pillar, choices you've made, what
 we could not see, pages audited, every check with its evidence and grade, AI crawler access, observed AI
 visibility, prioritized fixes, and what's working well.
 
@@ -187,6 +187,8 @@ guarantee of ranking outcomes.
 ---
 
 ## Version history
+
+**7.1.0**: The report now opens with an action list right after the executive summary: every fix and plan step on one checklist, grouped into the first 30, 31–60 and 61–90 days, with effort, what done looks like, the checks it closes and a status. Optional `owner` and `status` fields on fixes and plan rows. Scoring unchanged.
 
 **7.0.1**: Report layout fixes. Long labels in tables, cards and pills wrap instead of shrinking the whole PDF; the resourcing note and next check-in box sit above their tables so they no longer spill onto a page of their own. Scoring unchanged.
 

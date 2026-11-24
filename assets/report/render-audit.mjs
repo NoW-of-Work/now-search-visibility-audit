@@ -63,6 +63,44 @@ parts.push(section(`${head(num(), 'Executive summary', A.summary.summaryHeadline
       ${A.summary.topContent ? `<h4 style="margin-top:12px">Top content opportunities</h4><ol>${A.summary.topContent.map((f) => `<li>${md(f)}</li>`).join('')}</ol>` : ''}</div>
   </div>`));
 
+// ---------- action list ----------
+// One checklist the client can work down: every fix, merged with its 30/60/90 plan row (matched on the check IDs
+// it closes, then on wording), plus plan rows no fix covers. Nothing here is new; it re-orders fixes and plan.
+const PRI = { critical: ['Critical blocker', 'critical'], quick: ['Quick win', 'quick'], high: ['High value', 'refresh'], future: ['Future operations', 'future'] };
+const STATUS = { todo: ['To do', 'grey'], started: ['Started', 'needs'], done: ['Done', 'good'] };
+const WHEN = [['d30', 'First 30 days'], ['d60', 'Days 31–60'], ['d90', 'Days 61–90']];
+const ids = (s) => new Set(String(s || '').split(/[^A-Z0-9]+/i).filter((x) => /^[A-Z]{1,3}\d+$/i.test(x)).map((x) => x.toUpperCase()));
+const STOP = new Set(['the', 'and', 'for', 'with', 'from', 'into', 'your', 'their', 'that', 'this', 'add', 'set', 'make', 'each', 'every']);
+const words = (s) => new Set(String(s || '').toLowerCase().match(/[a-z0-9]{3,}/g)?.filter((w) => !STOP.has(w)) || []);
+const planRows = WHEN.flatMap(([w, g], wi) => (A.plan?.[w] || []).map((r, i) => ({ ...r, g, order: wi * 1000 + i, used: false })));
+const pickPlan = (f) => {
+  const fi = ids(f.checks), fw = words(f.fix);
+  let best = null, bestScore = 0;
+  for (const r of planRows.filter((x) => !x.used)) {
+    const shared = [...ids(r.checks)].filter((x) => fi.has(x)).length;
+    const rw = words(r.action), common = [...rw].filter((x) => fw.has(x)).length;
+    const wordFit = Math.min(rw.size, fw.size) ? common / Math.min(rw.size, fw.size) : 0;
+    const s = shared ? 10 + shared + wordFit : wordFit >= 0.6 ? wordFit : 0;
+    if (s > bestScore) { best = r; bestScore = s; }
+  }
+  if (best) best.used = true;
+  return best;
+};
+const defaultWhen = { critical: 0, quick: 0, high: 1, future: 2 };
+const actions = [
+  ...A.fixes.map((f, i) => {
+    const r = pickPlan(f);
+    return { order: r ? r.order : defaultWhen[f.priority] * 1000 + 500 + i, g: r ? r.g : WHEN[defaultWhen[f.priority]][1], action: r?.action || f.fix, detail: r ? f.fix : null,
+      pri: PRI[f.priority][0].replace('Future operations', 'Future').replace('Critical blocker', 'Critical'), effort: f.effort || r?.effort || '', done: r?.done || f.impact, checks: [...new Set([...ids(f.checks), ...ids(r?.checks)])].join(', ') || f.checks || r?.checks || '', owner: f.owner || r?.owner || '', status: f.status || r?.status || 'todo', threshold: r?.threshold };
+  }),
+  ...planRows.filter((r) => !r.used).map((r) => ({ order: r.order, g: r.g, action: r.action, pri: 'From the plan', effort: r.effort || '', done: r.done, checks: r.checks || '', owner: r.owner || '', status: r.status || 'todo', threshold: r.threshold })),
+].sort((a, b) => a.order - b.order).map((a, i) => ({ ...a, n: `${i + 1}. ${a.threshold ? '⚑ ' : ''}${a.action}`, st: (STATUS[a.status] || STATUS.todo)[0] }));
+const hasOwner = actions.some((a) => a.owner);
+parts.push(section(`${head(num(), 'Your action list', A.actionsHeadline || `*${actions.length} actions*, in the order to do them.`, `Everything the audit asks for, on one list. Each action names the checks it closes; the pages after this one show the evidence behind each.${actions.some((a) => a.threshold) ? ' ⚑ marks a threshold: do it before anything else in its window.' : ''}`)}
+  ${table([{ h: 'Action', k: 'n', w: hasOwner ? '30%' : '34%' }, { h: 'Type', k: 'pri', w: '12%', pill: (v) => ({ Critical: 'critical', 'Quick win': 'quick', 'High value': 'refresh', Future: 'future' })[v] || 'teal' },
+    ...(hasOwner ? [{ h: 'Who', k: 'owner', w: '10%' }] : []), { h: 'Effort', k: 'effort', w: '10%' }, { h: 'Done when', k: 'done' }, { h: 'Closes', k: 'checks', w: '9%' },
+    { h: 'Status', k: 'st', w: '8%', pill: (v) => Object.values(STATUS).find(([l]) => l === v)[1] }], actions, { groupKey: 'g' })}`, { flow: actions.length > 10 }));
+
 // ---------- Part 1: access + readiness ----------
 const sens = idx.point == null ? 'not computed (no point estimate; the alternative weightings would leave out the unassessed pillar)' : R.sensitivity.map((s) => `${s.name} ${s.value}`).join(', ');
 const blind = [...R.gates.filter((g) => g.result === 'verify').map((g) => ({ area: `${g.id} · ${g.label}`, kind: 'Access check', detail: `Confirm with ${g.tool}.` })),
@@ -120,7 +158,6 @@ if (V) {
 if (O) parts.push(section(`${head(num(), 'Results from your analytics', O.headline ? md(O.headline) : 'Visits from AI tools.', null)}
   ${table([{ h: 'Measure', k: 'label', w: '40%' }, { h: 'Value', k: 'value' }], O.items || [])}<p class="src">${md(O.note || '')} Always a lower bound: AI Overview and AI Mode clicks sit inside Google organic, and app traffic without a referrer lands in Direct.</p>`, { flow: true }));
 
-const PRI = { critical: ['Critical blocker', 'critical'], quick: ['Quick win', 'quick'], high: ['High value', 'refresh'], future: ['Future operations', 'future'] };
 parts.push(section(`${head(num(), 'Priority fixes', A.fixesHeadline || 'What to fix, *in order*.', 'Each fix names the check it closes. Effort bars use a log scale.')}
   ${steps(A.fixes.map((f) => ({ title: f.fix, detail: `${f.checks ? `**${f.checks}.** ` : ''}${f.impact}`, hours: f.hours ?? 4, effort: f.effort, tag: { text: PRI[f.priority][0], kind: PRI[f.priority][1] } })))}
   ${A.working?.length ? `<h2>What’s working</h2>${checkList(A.working.map((w) => ({ title: w.what, text: w.evidence })), 'lime')}` : ''}`, { flow: !!O }));
