@@ -188,6 +188,8 @@ guarantee of ranking outcomes.
 
 ## Version history
 
+**7.2.0**: The Priority fixes page can be ordered by impact relative to effort. Give every fix an `impactLevel` (high, medium, low) and mark fixes that need new writing with `newContent`; effort is banded from hours, so the page can promise that every low-effort item can be done in a week without writing new content. Scoring unchanged.
+
 **7.1.0**: The report now opens with an action list right after the executive summary: every fix and plan step on one checklist, grouped into the first 30, 31–60 and 61–90 days, with effort, what done looks like, the checks it closes and a status. Optional `owner` and `status` fields on fixes and plan rows. Scoring unchanged.
 
 **7.0.1**: Report layout fixes. Long labels in tables, cards and pills wrap instead of shrinking the whole PDF; the resourcing note and next check-in box sit above their tables so they no longer spill onto a page of their own. Scoring unchanged.

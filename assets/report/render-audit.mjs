@@ -18,6 +18,14 @@ if (!dataPath) { console.error('Usage: node render-audit.mjs audit-data.json [ou
 let A;
 try { A = JSON.parse(fs.readFileSync(dataPath, 'utf8')); } catch (e) { console.error(`The audit data file isn't valid JSON: ${e.message}`); process.exit(1); }
 process.on('uncaughtException', (e) => { console.error(`The report couldn't be drawn: ${e.message}. Check the data file against references/report-spec.md.`); process.exit(1); });
+{ // impact-to-effort ranking is all or nothing, so the page never claims an order it doesn't have
+  const tagged = (A.fixes || []).filter((f) => f.impactLevel !== undefined);
+  const bad = tagged.filter((f) => !['high', 'medium', 'low'].includes(f.impactLevel)).map((f) => f.fix);
+  if (bad.length) { console.error(`fixes: impactLevel must be high, medium or low ("${bad[0]}")`); process.exit(1); }
+  if (tagged.length && tagged.length !== A.fixes.length) { console.error(`fixes: give every fix an impactLevel, or none (${tagged.length} of ${A.fixes.length} have one)`); process.exit(1); }
+  const noHours = tagged.filter((f) => typeof f.hours !== 'number').map((f) => f.fix);
+  if (noHours.length) { console.error(`fixes: ranked fixes need hours (use 0 for ongoing work): "${noHours[0]}"`); process.exit(1); }
+}
 let R;
 try { R = computeScore(A); } catch (e) { console.error(e.message); process.exit(1); }
 const full = A.meta.depth === 'full';
@@ -158,8 +166,24 @@ if (V) {
 if (O) parts.push(section(`${head(num(), 'Results from your analytics', O.headline ? md(O.headline) : 'Visits from AI tools.', null)}
   ${table([{ h: 'Measure', k: 'label', w: '40%' }, { h: 'Value', k: 'value' }], O.items || [])}<p class="src">${md(O.note || '')} Always a lower bound: AI Overview and AI Mode clicks sit inside Google organic, and app traffic without a referrer lands in Direct.</p>`, { flow: true }));
 
-parts.push(section(`${head(num(), 'Priority fixes', A.fixesHeadline || 'What to fix, *in order*.', 'Each fix names the check it closes. Effort bars use a log scale.')}
-  ${steps(A.fixes.map((f) => ({ title: f.fix, detail: `${f.checks ? `**${f.checks}.** ` : ''}${f.impact}`, hours: f.hours ?? 4, effort: f.effort, tag: { text: PRI[f.priority][0], kind: PRI[f.priority][1] } })))}
+// Impact-to-effort ranking (v7.2). When every fix carries `impactLevel`, the page is ordered by impact relative
+// to effort and says so. Effort bands come from hours: Low = 16 hours or less AND no new content, so "every
+// low-effort item can be done in a week without writing new content" is true by construction.
+const LEVEL = { high: 3, medium: 2, low: 1 }, EFFORT = { low: 1, medium: 2, high: 3 };
+const ranked = A.fixes.length && A.fixes.every((f) => LEVEL[f.impactLevel]);
+const effortBand = (f) => (f.hours > 0 && f.hours <= 16 && !f.newContent ? 'low' : f.hours > 0 && f.hours <= 80 ? 'medium' : 'high');
+const cap = (s) => s[0].toUpperCase() + s.slice(1);
+const fixOrder = ranked
+  ? [...A.fixes.filter((f) => f.priority === 'critical'), ...A.fixes.filter((f) => f.priority !== 'critical')
+      .map((f, i) => ({ f, i, s: LEVEL[f.impactLevel] / EFFORT[effortBand(f)] }))
+      .sort((a, b) => b.s - a.s || LEVEL[b.f.impactLevel] - LEVEL[a.f.impactLevel] || (a.f.hours ?? 0) - (b.f.hours ?? 0) || a.i - b.i).map((x) => x.f)]
+  : A.fixes;
+const fixesNote = ranked
+  ? `Ordered by impact relative to effort${R.failed.length ? ', after the access fix that has to come first' : ''}. Every low-effort item can be done in a week without writing new content.`
+  : 'Each fix names the check it closes. Effort bars use a log scale.';
+parts.push(section(`${head(num(), 'Priority fixes', A.fixesHeadline || 'What to fix, *in order*.', fixesNote)}
+  ${steps(fixOrder.map((f) => ({ title: f.fix, detail: `${f.checks ? `**${f.checks}.** ` : ''}${f.impact}`, hours: f.hours ?? 4,
+    effort: ranked ? `${cap(effortBand(f))} effort · ${cap(f.impactLevel)} impact${f.effort ? ` · ${f.effort}` : ''}` : f.effort, tag: { text: PRI[f.priority][0], kind: PRI[f.priority][1] } })))}
   ${A.working?.length ? `<h2>What’s working</h2>${checkList(A.working.map((w) => ({ title: w.what, text: w.evidence })), 'lime')}` : ''}`, { flow: !!O }));
 
 // ---------- Part 2: content ----------

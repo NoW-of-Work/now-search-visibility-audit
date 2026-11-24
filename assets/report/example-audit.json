@@ -362,7 +362,8 @@
       "checks": "TD1, TD5",
       "effort": "2 hours",
       "hours": 2,
-      "impact": "Brave and Bing drop the old team pages, so AI answers built on them stop repeating the old team."
+      "impact": "Brave and Bing drop the old team pages, so AI answers built on them stop repeating the old team.",
+      "impactLevel": "high"
     },
     {
       "priority": "quick",
@@ -370,7 +371,9 @@
       "checks": "BQ2, BQ9",
       "effort": "1 day",
       "hours": 8,
-      "impact": "Each page states what it is, for whom and at what scope in its opening lines."
+      "impact": "Each page states what it is, for whom and at what scope in its opening lines.",
+      "impactLevel": "high",
+      "newContent": true
     },
     {
       "priority": "high",
@@ -378,7 +381,9 @@
       "checks": "BQ4, OS5",
       "effort": "3 days",
       "hours": 24,
-      "impact": "First-hand data no one else has, and a reason for others to mention the firm."
+      "impact": "First-hand data no one else has, and a reason for others to mention the firm.",
+      "impactLevel": "high",
+      "newContent": true
     },
     {
       "priority": "high",
@@ -386,7 +391,8 @@
       "checks": "OS2, OS4",
       "effort": "3 hours",
       "hours": 3,
-      "impact": "Present on a platform this category’s answers cite."
+      "impact": "Present on a platform this category’s answers cite.",
+      "impactLevel": "medium"
     },
     {
       "priority": "future",
@@ -394,7 +400,8 @@
       "checks": "G2, G4, G5, PX1–3",
       "effort": "1 hour",
       "hours": 1,
-      "impact": "Confirms three access checks and lets page speed count in the score."
+      "impact": "Confirms three access checks and lets page speed count in the score.",
+      "impactLevel": "low"
     }
   ],
   "working": [

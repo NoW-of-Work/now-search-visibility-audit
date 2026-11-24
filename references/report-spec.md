@@ -183,6 +183,13 @@ lower bound.
 - `owner` and `status` (optional, on any fix or plan row): who does it, and `todo` (default), `started` or
   `done`. They print on the action list; a **Who** column appears only when at least one action has an owner.
 - `actionsHeadline` (top level, optional): the action list page headline.
+- `impactLevel` (optional, `high` / `medium` / `low`) and `newContent` (optional, `true` when the fix needs new
+  pages or copy written): give **every** fix an `impactLevel`, or none. With them, the Priority fixes page is
+  **ordered by impact relative to effort** and says "Every low-effort item can be done in a week without writing
+  new content." Effort is banded from `hours`, never written by hand: **Low** = 16 hours or less and no new
+  content; **Medium** = up to 80 hours; **High** = more, or ongoing (`hours: 0`). Each fix shows "Low effort ·
+  High impact". A failed gate's critical fix still comes first. Ties go to higher impact, then fewer hours.
+  `hours` is required on every ranked fix. Use this by default for client audits.
 
 **The action list** (page 3, right after the executive summary) is built for you, never written by hand. Every
 fix appears once, merged with the 30/60/90 plan row that closes the same check IDs (or, failing that, says the

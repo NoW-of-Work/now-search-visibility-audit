@@ -18,7 +18,7 @@ compatibility: >
   curl, pdftoppm and pdftotext improves accuracy and render checks but is optional.
 metadata:
   author: The NoW of Work
-  version: 7.1.0
+  version: 7.2.0
 ---
 
 # NoW Search Visibility Audit & Growth Roadmap: SEO · GEO · AEO
@@ -351,6 +351,11 @@ Read `references/report-spec.md`. You write one audit data file (JSON, in the sh
 `assets/report/example-audit.json`) and run `assets/report/render-audit.mjs`, which draws every chart and page in
 the NoW visual system and prints the PDF. Every report opens with a plain-words page explaining SEO, AEO and GEO
 and what each means for the business, because most readers don't know the difference; the renderer adds it.
+
+Give every fix an `impactLevel` (high / medium / low), real `hours`, and `newContent: true` when it needs new
+pages or copy written. The Priority fixes page is then ordered by impact relative to effort and promises that
+every low-effort item can be done in a week without writing new content; effort bands come from hours, so the
+promise holds. Do this for every client audit.
 
 Keep the JSON next to the PDF: the monthly progress check reads it as its baseline. Do the render check in the
 spec every time; a clipped chart or a split table is not deliverable.
